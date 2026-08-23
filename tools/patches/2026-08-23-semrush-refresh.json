@@ -1,0 +1,27 @@
+{
+  "target": "cc_data",
+  "note": "Semrush organic-family re-pull 2026-08-23 via Semrush MCP (cloud session). Re-pulled: rank, organic keywords/traffic/cost, position buckets, SERP-feature keyword counts, and the 2026-08 series point. NOT re-pulled (API units exhausted mid-refresh): authority score, backlinks overview, top_keywords positions, keyword_gap, competitors — those remain 2026-08-08 vintage and keep their original capture notes.",
+  "ops": [
+    { "op": "set", "path": "semrush.rank", "value": 314575 },
+    { "op": "set", "path": "semrush.organic.keywords", "value": 3500 },
+    { "op": "set", "path": "semrush.organic.traffic_est", "value": 5311 },
+    { "op": "set", "path": "semrush.organic.traffic_cost_est", "value": 15814 },
+    { "op": "set", "path": "semrush.organic.pos_1_3", "value": 146 },
+    { "op": "set", "path": "semrush.organic.pos_4_10", "value": 254 },
+    { "op": "set", "path": "semrush.organic.pos_11_20", "value": 346 },
+    { "op": "append", "path": "semrush.organic.series", "value": { "m": "2026-08", "kw": 3500, "traffic": 5311, "p13": 146, "aio": 1332, "lp": 1641 } },
+    { "op": "set", "path": "semrush.serp", "value": { "local_pack_kw": 1641, "ai_overview_kw": 1332, "paa_kw": 3131, "featured_snippets": 13 } },
+    { "op": "set", "path": "semrush.re_verified", "value": "organic family re-pulled 2026-08-23 via Semrush MCP (cloud session); AS/backlinks/top-keyword positions not re-pulled (API units exhausted) — those figures remain 2026-08-08" },
+    { "op": "set", "path": "live.semrush.rank", "value": 314575 },
+    { "op": "set", "path": "live.semrush.organic.keywords", "value": 3500 },
+    { "op": "set", "path": "live.semrush.organic.traffic_est", "value": 5311 },
+    { "op": "set", "path": "live.semrush.organic.traffic_cost_est", "value": 15814 },
+    { "op": "set", "path": "live.semrush.organic.pos_1_3", "value": 146 },
+    { "op": "set", "path": "live.semrush.organic.pos_4_10", "value": 254 },
+    { "op": "set", "path": "live.semrush.organic.pos_11_20", "value": 346 },
+    { "op": "append", "path": "live.semrush.organic.series", "value": { "m": "2026-08", "kw": 3500, "traffic": 5311, "p13": 146, "aio": 1332, "lp": 1641 } },
+    { "op": "set", "path": "live.semrush.serp", "value": { "local_pack_kw": 1641, "ai_overview_kw": 1332, "paa_kw": 3131, "featured_snippets": 13 } },
+    { "op": "set", "path": "live.semrush.re_verified", "value": "organic family re-pulled 2026-08-23 via Semrush MCP (cloud session); AS/backlinks/top-keyword positions not re-pulled (API units exhausted) — those figures remain 2026-08-08" },
+    { "op": "set", "path": "integrations.semrush.status", "value": "LIVE via Semrush MCP — organic family re-pulled 2026-08-23 (rank 314,575 · 3,500 kw · 5,311 traffic est · $15,814 value); AS 28 · 490 ref domains remain 2026-08-08 (backlinks units exhausted). Direct-API PAT still NOT_ENTITLED (OPS-22); MCP is the live transport meanwhile" }
+  ]
+}
