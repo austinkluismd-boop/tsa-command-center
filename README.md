@@ -6,6 +6,12 @@ Public, fully-functional demonstration of the practice analytics console.
 - **Landing / device router:** [`index.html`](https://austinkluismd-boop.github.io/tsa-command-center/)
 - **Desktop demo:** [`desktop.html`](https://austinkluismd-boop.github.io/tsa-command-center/desktop.html)
 - **Mobile demo:** [`mobile.html`](https://austinkluismd-boop.github.io/tsa-command-center/mobile.html)
+- **Atlas Authority console:** [`authority/`](https://austinkluismd-boop.github.io/tsa-command-center/authority/) —
+  tenant-tabbed corpus (Composite · TSA · OSA · Bella Roma · TSA Wellness),
+  Site Studio, Media, Socials & OAuth, and the Atlas Assistant. Public page
+  is the read-only shell; editing, login, and Claude-on-Bedrock chat come
+  from the operator-deployed private workspace (`authority/backend/`,
+  runbook in `authority/README.md`).
 
 Both demos are the identical self-contained engine (one ~2 MB HTML file — vendored charts, embedded fonts, offline US basemap, **zero network requests at view time**). Seventeen sections (composite Engines view + Estate/Surgical/Injectable/Wellness scoping): Authority Index · Action Items · Signature Four · Paid Media · Patient Journey · Content Studio · Search · Competitive Intel · AI Visibility · Local & Reputation · Geo Intelligence · Site Experience · Engagement · Social & Audience · Interaction Maps · Methodology.
 
@@ -14,16 +20,18 @@ Data honesty: figures carry provenance chips — live-verified inputs (Semrush �
 ## Edit pathway (the only sanctioned one)
 
 The consoles' source of record is the `window.CC_DATA` object embedded in
-`desktop.html`/`mobile.html`. **Never hand-edit figures** — in either those
-files or `group/index.html`. Instead:
+`desktop.html`/`mobile.html` (and carried byte-identically by
+`authority/index.html`). **Never hand-edit figures** — in those files,
+`group/index.html`, or `authority/index.html`. Instead:
 
 1. Write a patch file under `tools/patches/` (see
    `2026-08-23-semrush-refresh.json` for the format — set/append ops on
    dotted paths, plus a note recording what was and was not re-measured;
    a numeric segment indexes into a list, e.g. `ops.17.status`).
 2. Apply it: `python3 tools/ccdata.py patch tools/patches/<file>.json` —
-   this patches desktop and mobile in one operation (they can never
-   diverge) and appends the patch to `CC_DATA.meta.data_updates`.
+   this patches desktop, mobile and the authority console in one operation
+   (they can never diverge) and appends the patch to
+   `CC_DATA.meta.data_updates`.
 3. Verify: `python3 tools/ccdata.py check` — byte-parity, landing-chip
    parity, the provenance/label law (a demo composite must never wear a
    MEASURED chip), the zero-network law, closure honesty (no unfilled

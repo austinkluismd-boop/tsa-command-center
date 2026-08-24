@@ -13,7 +13,8 @@ To close an item:
    actually observed (screens seen, confirmation states, the decision made).
 3. `python3 tools/ccdata.py patch tools/patches/staged/close-OPS-n.json`
 4. `python3 tools/ccdata.py check` → must print `CCDATA CHECK: PASS`
-5. Commit desktop.html + mobile.html + the filled-in patch together.
+5. Commit desktop.html + mobile.html + authority/index.html + the
+   filled-in patch together.
 
 Guard rails: `ccdata.py check` (and therefore CI) **fails** any console whose
 CC_DATA carries an unfilled `<EVIDENCE`/`<DATE>` placeholder, so a staged

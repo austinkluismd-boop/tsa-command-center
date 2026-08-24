@@ -1,0 +1,275 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Atlas Authority workspace — the private half of authority/index.html.
+  Cognito login (owners/editors), JWT-authorized HTTP API, Claude on Amazon
+  Bedrock for the Atlas Assistant, S3 media vault, Secrets Manager for social
+  OAuth credentials, DynamoDB change-request queue + audit log, and a GitHub
+  hand-off that turns approved data patches into pull requests gated by the
+  repo's console-verify battery. Deploy with `sam build && sam deploy --guided`
+  (see README.md in this directory).
+
+Parameters:
+  AllowedOrigin:
+    Type: String
+    Default: https://austinkluismd-boop.github.io
+    Description: Exact origin the console is served from; CORS is locked to it.
+  BedrockRegion:
+    Type: String
+    Default: us-east-1
+    Description: Region whose Bedrock endpoint serves Claude (model access must be enabled there).
+  BedrockModelId:
+    Type: String
+    Default: anthropic.claude-opus-5
+    Description: Claude model id on Amazon Bedrock used by the Atlas Assistant.
+  GitHubRepo:
+    Type: String
+    Default: austinkluismd-boop/tsa-command-center
+    Description: owner/repo that receives data-patch pull requests.
+  GitHubTokenSecretName:
+    Type: String
+    Default: atlas/authority/github-token
+    Description: >
+      Secrets Manager secret holding a GitHub fine-grained token with
+      contents:write + pull_requests:write on GitHubRepo. Created by the
+      operator (runbook section 5) — never stored in any repo.
+
+Globals:
+  Function:
+    Runtime: python3.12
+    MemorySize: 512
+    Timeout: 30
+    Environment:
+      Variables:
+        TABLE_NAME: !Ref WorkspaceTable
+        AUDIT_TTL_DAYS: "365"
+
+Resources:
+  # ── Identity ──────────────────────────────────────────────────────────
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: atlas-authority-users
+      AdminCreateUserConfig:
+        AllowAdminCreateUserOnly: true   # invitations only — no self-signup
+      AutoVerifiedAttributes: [email]
+      UsernameAttributes: [email]
+      Policies:
+        PasswordPolicy:
+          MinimumLength: 12
+          RequireLowercase: true
+          RequireUppercase: true
+          RequireNumbers: true
+          RequireSymbols: false
+          TemporaryPasswordValidityDays: 7
+      UserPoolAddOns:
+        AdvancedSecurityMode: ENFORCED
+
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    Properties:
+      ClientName: atlas-authority-console
+      UserPoolId: !Ref UserPool
+      GenerateSecret: false              # public client — the console is a static page
+      ExplicitAuthFlows:
+        - ALLOW_USER_PASSWORD_AUTH       # console sign-in (no SDK, zero-network shell)
+        - ALLOW_REFRESH_TOKEN_AUTH
+      AccessTokenValidity: 1
+      IdTokenValidity: 1
+      RefreshTokenValidity: 30
+      TokenValidityUnits:
+        AccessToken: hours
+        IdToken: hours
+        RefreshToken: days
+      PreventUserExistenceErrors: ENABLED
+
+  OwnersGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      GroupName: owners
+      UserPoolId: !Ref UserPool
+      Description: Approve change requests, configure OAuth credentials (Dr. Cuzalina, Austin).
+
+  EditorsGroup:
+    Type: AWS::Cognito::UserPoolGroup
+    Properties:
+      GroupName: editors
+      UserPoolId: !Ref UserPool
+      Description: Draft edits, upload media, manage socials (Samantha).
+
+  # ── API ───────────────────────────────────────────────────────────────
+  Api:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins:
+          - !Ref AllowedOrigin
+        AllowHeaders: [content-type, authorization]
+        AllowMethods: [GET, POST, PUT, DELETE, OPTIONS]
+        MaxAge: 3600
+      Auth:
+        DefaultAuthorizer: CognitoJwt
+        Authorizers:
+          CognitoJwt:
+            IdentitySource: $request.header.Authorization
+            JwtConfiguration:
+              issuer: !Sub https://cognito-idp.${AWS::Region}.amazonaws.com/${UserPool}
+              audience:
+                - !Ref UserPoolClient
+
+  # ── Storage ───────────────────────────────────────────────────────────
+  WorkspaceTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - {AttributeName: pk, AttributeType: S}
+        - {AttributeName: sk, AttributeType: S}
+      KeySchema:
+        - {AttributeName: pk, KeyType: HASH}
+        - {AttributeName: sk, KeyType: RANGE}
+      TimeToLiveSpecification:
+        AttributeName: ttl
+        Enabled: true
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+
+  MediaBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      VersioningConfiguration:
+        Status: Enabled            # nothing is destroyed — rollback is always possible
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      CorsConfiguration:
+        CorsRules:
+          - AllowedOrigins: [!Ref AllowedOrigin]
+            AllowedMethods: [PUT, GET]
+            AllowedHeaders: ["*"]
+            MaxAge: 3600
+      LifecycleConfiguration:
+        Rules:
+          - Id: expire-old-noncurrent
+            Status: Enabled
+            NoncurrentVersionExpiration:
+              NoncurrentDays: 365
+
+  # ── Functions ─────────────────────────────────────────────────────────
+  ChatFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/chat/
+      Handler: app.handler
+      Timeout: 120
+      MemorySize: 1024
+      Environment:
+        Variables:
+          BEDROCK_REGION: !Ref BedrockRegion
+          BEDROCK_MODEL_ID: !Ref BedrockModelId
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref WorkspaceTable
+        - Statement:
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeModel
+                - bedrock:InvokeModelWithResponseStream
+              Resource:
+                - !Sub arn:aws:bedrock:${BedrockRegion}::foundation-model/anthropic.*
+                - !Sub arn:aws:bedrock:*:${AWS::AccountId}:inference-profile/*anthropic*
+      Events:
+        Chat:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref Api
+            Path: /chat
+            Method: POST
+
+  WorkspaceFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/workspace/
+      Handler: app.handler
+      Environment:
+        Variables:
+          MEDIA_BUCKET: !Ref MediaBucket
+          GITHUB_REPO: !Ref GitHubRepo
+          GITHUB_TOKEN_SECRET: !Ref GitHubTokenSecretName
+          SOCIAL_SECRET_PREFIX: atlas/authority/social/
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref WorkspaceTable
+        - S3CrudPolicy:
+            BucketName: !Ref MediaBucket
+        - Statement:
+            - Effect: Allow
+              Action:
+                - secretsmanager:GetSecretValue
+                - secretsmanager:DescribeSecret
+              Resource:
+                - !Sub arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:${GitHubTokenSecretName}*
+            - Effect: Allow
+              Action:
+                - secretsmanager:CreateSecret
+                - secretsmanager:PutSecretValue
+                - secretsmanager:DescribeSecret
+                - secretsmanager:DeleteSecret
+                - secretsmanager:TagResource
+              Resource:
+                - !Sub arn:aws:secretsmanager:${AWS::Region}:${AWS::AccountId}:secret:atlas/authority/social/*
+      Events:
+        Health:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref Api
+            Path: /health
+            Method: GET
+            Auth: {Authorizer: NONE}     # console's unauthenticated reachability probe
+        SiteList:
+          Type: HttpApi
+          Properties: {ApiId: !Ref Api, Path: /site/change-requests, Method: GET}
+        SiteCreate:
+          Type: HttpApi
+          Properties: {ApiId: !Ref Api, Path: /site/change-requests, Method: POST}
+        SiteApprove:
+          Type: HttpApi
+          Properties: {ApiId: !Ref Api, Path: "/site/change-requests/{id}/approve", Method: POST}
+        SiteReject:
+          Type: HttpApi
+          Properties: {ApiId: !Ref Api, Path: "/site/change-requests/{id}/reject", Method: POST}
+        MediaList:
+          Type: HttpApi
+          Properties: {ApiId: !Ref Api, Path: /media, Method: GET}
+        MediaUpload:
+          Type: HttpApi
+          Properties: {ApiId: !Ref Api, Path: /media/uploads, Method: POST}
+        SocialConfig:
+          Type: HttpApi
+          Properties: {ApiId: !Ref Api, Path: /social/config, Method: GET}
+        SocialPut:
+          Type: HttpApi
+          Properties: {ApiId: !Ref Api, Path: "/social/oauth/{platform}", Method: PUT}
+        SocialDelete:
+          Type: HttpApi
+          Properties: {ApiId: !Ref Api, Path: "/social/oauth/{platform}", Method: DELETE}
+
+Outputs:
+  WorkspaceConfig:
+    Description: Paste this JSON into the console under Access & Workspace.
+    Value: !Sub >-
+      {"region":"${AWS::Region}","userPoolId":"${UserPool}","clientId":"${UserPoolClient}","apiBase":"https://${Api}.execute-api.${AWS::Region}.amazonaws.com"}
+  UserPoolId:
+    Value: !Ref UserPool
+  UserPoolClientId:
+    Value: !Ref UserPoolClient
+  ApiBase:
+    Value: !Sub https://${Api}.execute-api.${AWS::Region}.amazonaws.com
+  MediaBucketName:
+    Value: !Ref MediaBucket

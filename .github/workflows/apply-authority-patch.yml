@@ -1,0 +1,59 @@
+# Applies data patches queued from the Atlas Authority console.
+#
+# The workspace backend (authority/backend) commits ONLY a patch file under
+# tools/patches/ to an authority/patch/* branch and opens a draft PR. This
+# workflow then applies any not-yet-applied patch through the one sanctioned
+# pathway — tools/ccdata.py patch — which rewrites desktop.html, mobile.html
+# and authority/index.html in a single operation, and commits the result back
+# to the same branch. console-verify runs on that push and gates the merge.
+#
+# Idempotent by construction: a patch already listed in
+# CC_DATA.meta.data_updates is skipped, so the workflow's own commit does not
+# re-trigger an apply loop.
+name: apply-authority-patch
+on:
+  push:
+    branches:
+      - "authority/patch/**"
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.12"
+      - name: Apply unapplied patches via ccdata.py
+        run: |
+          python3 - <<'EOF'
+          import json, subprocess, sys
+          from pathlib import Path
+          sys.path.insert(0, "tools")
+          import ccdata
+          applied = {u.get("patch") for u in ccdata.extract(ccdata.CONSOLES[0])
+                     .get("meta", {}).get("data_updates", [])}
+          pending = [p for p in sorted(Path("tools/patches").glob("*.json"))
+                     if p.name not in applied]
+          if not pending:
+              print("no unapplied patches — nothing to do")
+              sys.exit(0)
+          for p in pending:
+              print(f"applying {p.name}")
+              subprocess.run([sys.executable, "tools/ccdata.py", "patch", str(p)],
+                             check=True)
+          EOF
+      - name: Consistency battery
+        run: python3 tools/ccdata.py check
+      - name: Commit applied consoles back to the branch
+        run: |
+          if git diff --quiet; then
+            echo "consoles unchanged — nothing to commit"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add desktop.html mobile.html authority/index.html
+          git commit -m "Apply queued data patch via ccdata.py (desktop + mobile + authority)"
+          git push

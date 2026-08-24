@@ -17,18 +17,22 @@ enforced by CI; this file tells you how to work inside them.
    embedded as data URIs (reuse the faces already in desktop.html).
    Navigation `<a>` links are fine; `<link>`/`<script>`/`<img>` fetches are
    not.
-3. **One edit pathway.** Never hand-edit figures — in the flagship consoles
-   OR in `group/index.html`. Data changes go through:
+3. **One edit pathway.** Never hand-edit figures — in the flagship consoles,
+   in `group/index.html`, OR in `authority/index.html`. Data changes go
+   through:
    ```
    1. write a patch file under tools/patches/   (see the 2026-08-23 example:
       set/append ops on dotted paths + a note recording what was and was
       NOT re-measured)
    2. python3 tools/ccdata.py patch tools/patches/<file>.json
-      (patches desktop AND mobile in one operation — they are byte-identical
-      by construction and must stay that way)
+      (patches desktop AND mobile AND authority in one operation — desktop
+      and mobile are byte-identical by construction, and the authority
+      console's CC_DATA line must stay byte-identical to the flagship's)
    3. python3 tools/ccdata.py check     ← must print CCDATA CHECK: PASS
    ```
-   Every patch is logged in `CC_DATA.meta.data_updates`.
+   Every patch is logged in `CC_DATA.meta.data_updates`. Patches queued from
+   the Authority console arrive as `authority/patch/*` branches whose PRs the
+   `apply-authority-patch` workflow completes through this same pathway.
 
 ## Freshness honesty
 
@@ -41,7 +45,7 @@ the sentence or date both halves.
 ## Before any push
 
 ```
-python3 tools/ccdata.py check          # the 9-check battery CI will run
+python3 tools/ccdata.py check          # the consistency battery CI will run
 ```
 For console changes, also load the page in a real browser (Playwright or
 otherwise) and confirm: every tab/view renders, zero console errors, zero
