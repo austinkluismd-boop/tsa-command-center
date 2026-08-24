@@ -10,8 +10,8 @@ guard against that class of defect:
 
   extract   — pull CC_DATA out of a console as pretty JSON (stdout or file)
   patch     — apply a reviewed patch file (set/append ops on dotted paths)
-              to desktop.html AND mobile.html in one operation, so the two
-              can never diverge
+              to desktop.html AND mobile.html AND authority/index.html in
+              one operation, so the consoles can never diverge
   check     — the consistency battery (run by CI on every push):
                 1. desktop.html and mobile.html are byte-identical
                 2. the landing page's Authority Index chip equals
@@ -24,6 +24,12 @@ guard against that class of defect:
                    (links for navigation are fine; <link>/<script>/<img>
                    fetches are not)
                 5. the group console's <title> version matches its sidebar
+                6. the authority console's CC_DATA line is byte-identical
+                   to the flagship's
+                7. provenance law on the authority console: chips are only
+                   assembled at render time from CC_DATA provenance — a
+                   hardcoded MEASURED chip anywhere in the file fails
+                8. the authority console's <title> version matches its rail
 
 Patch file format (JSON):
   {"target": "cc_data",
@@ -48,6 +54,9 @@ ROOT = Path(__file__).resolve().parents[1]
 CONSOLES = [ROOT / "desktop.html", ROOT / "mobile.html"]
 GROUP = ROOT / "group" / "index.html"
 LANDING = ROOT / "index.html"
+# the Authority console carries the same CC_DATA line as the flagship and is
+# patched in the same operation, so the three can never diverge
+AUTHORITY = ROOT / "authority" / "index.html"
 
 CC_RE = re.compile(r"^window\.CC_DATA = (.*);$", re.M)
 
@@ -111,9 +120,10 @@ def apply_patch(patch_path: Path, stamp: str | None) -> None:
         "patch": patch_path.name,
         "note": patch.get("note", ""),
     })
-    for c in CONSOLES:
+    targets = CONSOLES + ([AUTHORITY] if AUTHORITY.exists() else [])
+    for c in targets:
         embed(c, base)
-    print(f"patched {len(ops)} op(s) into {' + '.join(c.name for c in CONSOLES)}")
+    print(f"patched {len(ops)} op(s) into {' + '.join(str(c.relative_to(ROOT)) for c in targets)}")
 
 
 # ---------------- consistency battery ----------------
@@ -169,7 +179,7 @@ def check() -> int:
 
     # 4. zero-network law
     load_re = re.compile(r'<(?:link|script|img)[^>]+(?:href|src)="(https?://[^"]+)"', re.I)
-    for f in [*CONSOLES, GROUP, LANDING]:
+    for f in [*CONSOLES, GROUP, LANDING, AUTHORITY]:
         hits = [u for u in load_re.findall(_read(f))]
         if hits:
             _fail(msgs, f"{f.relative_to(ROOT)}: loads external resource(s) at view time: {hits[:3]}")
@@ -185,6 +195,41 @@ def check() -> int:
         _ok(msgs, f"group console version {tv.group(1)} consistent")
     else:
         _fail(msgs, "group console: version string not found in title and/or sidebar")
+
+    # 6. authority console: CC_DATA line byte-identical to the flagship's
+    authority = _read(AUTHORITY)
+    fm = CC_RE.search(_read(CONSOLES[0]))
+    am = CC_RE.search(authority)
+    if not am:
+        _fail(msgs, "authority console: no CC_DATA line — it must carry the source of record")
+    elif am.group(0) != fm.group(0):
+        _fail(msgs, "authority console: CC_DATA differs from the flagship — consoles have diverged; re-run ccdata.py patch")
+    else:
+        _ok(msgs, "authority CC_DATA line byte-identical to flagship")
+
+    # 7. provenance/label law on the authority console: chips may only be
+    #    assembled at render time from CC_DATA provenance (PROV_CLASS); a
+    #    hardcoded MEASURED chip anywhere in the file is the forbidden defect
+    if "PROVENANCE_CHIPS_FROM_CC_DATA" not in authority:
+        _fail(msgs, "authority console: PROV_CLASS provenance-derivation marker missing")
+    elif re.search(r"tag\s+t-meas", authority):
+        _fail(msgs, "authority console: hardcoded MEASURED chip found — chips must derive from CC_DATA provenance")
+    else:
+        _ok(msgs, "authority chips derive from CC_DATA provenance (no hardcoded MEASURED chip)")
+    if re.search(r'id="authority-index-tile"[^>]*></span>', authority):
+        _ok(msgs, "authority index tile is an empty mount (filled from CC_DATA at render)")
+    else:
+        _fail(msgs, "authority console: index tile mount missing or pre-filled in static markup")
+
+    # 8. authority console version parity (title vs rail)
+    atv = re.search(r"<title>[^<]*·\s*(v[\d.]+)</title>", authority)
+    asv = re.search(r"AUTHORITY CENTER\s*·\s*(v[\d.]+)", authority)
+    if atv and asv and atv.group(1) != asv.group(1):
+        _fail(msgs, f"authority console title says {atv.group(1)} but rail says {asv.group(1)}")
+    elif atv and asv:
+        _ok(msgs, f"authority console version {atv.group(1)} consistent")
+    else:
+        _fail(msgs, "authority console: version string not found in title and/or rail")
 
     print("\n".join(msgs))
     fails = sum(1 for m in msgs if m.startswith("FAIL"))
