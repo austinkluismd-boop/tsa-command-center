@@ -9,7 +9,8 @@ composite rendered as MEASURED on the investor console. This tool is the
 guard against that class of defect:
 
   extract   — pull CC_DATA out of a console as pretty JSON (stdout or file)
-  patch     — apply a reviewed patch file (set/append ops on dotted paths)
+  patch     — apply a reviewed patch file (set/append ops on dotted paths;
+              a numeric segment indexes into a list, e.g. ops.17.status)
               to desktop.html AND mobile.html in one operation, so the two
               can never diverge
   check     — the consistency battery (run by CI on every push):
@@ -23,7 +24,11 @@ guard against that class of defect:
                 4. zero-network law: no console loads any http(s) resource
                    (links for navigation are fine; <link>/<script>/<img>
                    fetches are not)
-                5. the group console's <title> version matches its sidebar
+                5. closure honesty: no unfilled <EVIDENCE>/<DATE> closure
+                   placeholders in CC_DATA — a staged closure-declaration
+                   patch (tools/patches/staged/) applied without the
+                   operator's evidence is a false "done"
+                6. the group console's <title> version matches its sidebar
 
 Patch file format (JSON):
   {"target": "cc_data",
@@ -74,16 +79,42 @@ def embed(path: Path, data: dict) -> None:
 
 
 def _resolve(data: dict, dotted: str, create: bool = False):
+    """Walk a dotted path. A numeric segment indexes into a list (e.g.
+    ops.17.status is ops[17]["status"]) — indices must already exist; the
+    pathway never grows a list except through op=append."""
     parts = dotted.split(".")
     node = data
     for p in parts[:-1]:
-        if p not in node:
+        if isinstance(node, list):
+            if not p.isdigit() or int(p) >= len(node):
+                sys.exit(f"REFUSED: path {dotted!r} — {p!r} is not an existing index of a {len(node)}-item list")
+            node = node[int(p)]
+        elif p not in node:
             if create:
                 node[p] = {}
+                node = node[p]
             else:
                 sys.exit(f"REFUSED: path {dotted!r} — {p!r} absent (no silent creation without op=set-new)")
-        node = node[p]
+        else:
+            node = node[p]
     return node, parts[-1]
+
+
+def _leaf_set(node, leaf: str, value, dotted: str) -> None:
+    if isinstance(node, list):
+        if not leaf.isdigit() or int(leaf) >= len(node):
+            sys.exit(f"REFUSED: path {dotted!r} — {leaf!r} is not an existing index of a {len(node)}-item list")
+        node[int(leaf)] = value
+    else:
+        node[leaf] = value
+
+
+def _leaf_get(node, leaf: str, dotted: str):
+    if isinstance(node, list):
+        if not leaf.isdigit() or int(leaf) >= len(node):
+            sys.exit(f"REFUSED: path {dotted!r} — {leaf!r} is not an existing index of a {len(node)}-item list")
+        return node[int(leaf)]
+    return node.get(leaf)
 
 
 def apply_patch(patch_path: Path, stamp: str | None) -> None:
@@ -97,9 +128,9 @@ def apply_patch(patch_path: Path, stamp: str | None) -> None:
     for op in ops:
         node, leaf = _resolve(base, op["path"], create=(op["op"] == "set"))
         if op["op"] == "set":
-            node[leaf] = op["value"]
+            _leaf_set(node, leaf, op["value"], op["path"])
         elif op["op"] == "append":
-            target = node.get(leaf)
+            target = _leaf_get(node, leaf, op["path"])
             if not isinstance(target, list):
                 sys.exit(f"REFUSED: append target {op['path']!r} is not a list")
             target.append(op["value"])
@@ -176,7 +207,16 @@ def check() -> int:
         else:
             _ok(msgs, f"{f.relative_to(ROOT)}: zero external resource loads")
 
-    # 5. group console version parity (title vs sidebar)
+    # 5. closure honesty: a staged closure-declaration patch applied with its
+    #    placeholders intact is a false "done" — refuse it
+    raw = json.dumps(data, ensure_ascii=True)
+    hit = next((m for m in ("<EVIDENCE", "<DATE>") if m in raw), None)
+    if hit:
+        _fail(msgs, f"CC_DATA carries an unfilled closure placeholder {hit!r} — a staged closure patch was applied without the operator's evidence; revert or fill it in")
+    else:
+        _ok(msgs, "no unfilled closure placeholders in CC_DATA")
+
+    # 6. group console version parity (title vs sidebar)
     tv = re.search(r"<title>[^<]*·\s*(v[\d.]+)</title>", group)
     sv = re.search(r"COMMAND CENTER\s*·\s*(v[\d.]+)", group)
     if tv and sv and tv.group(1) != sv.group(1):

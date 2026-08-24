@@ -1,0 +1,16 @@
+{
+  "target": "cc_data",
+  "note": "CLOSURE DECLARATION OPS-23 - NAP canonical-number decision. APPLY ONLY after the operator has performed the act; statuses are operator declarations. done means: ONE canonical number decided AND RECORDED IN THE EVIDENCE FIELD, GBP + site + citations aligned to it, the DNI pool excludes it, Yext UTM/tracking remnants deliberately killed. Before applying: fill in the two placeholder tokens in the ops values below (the day the act happened; the evidence actually observed) - ccdata.py check refuses (and CI blocks) a console carrying an unfilled placeholder.",
+  "ops": [
+    {
+      "op": "set",
+      "path": "ops.22.status",
+      "value": "done"
+    },
+    {
+      "op": "set",
+      "path": "ops.22.closed",
+      "value": "<DATE>: <EVIDENCE - operator declaration required>"
+    }
+  ]
+}
