@@ -64,10 +64,17 @@ a stop-ship and revert before anything else.
 
 - `practice-stack` (private) — the platform suite: mission-control,
   measurement components, astro-site engine, AWS ship path. Its own
-  CLAUDE.md carries the suite laws.
+  CLAUDE.md carries the suite laws. Its `docs/SESSIONS.md` is the estate's
+  cross-session ledger (Cowork ↔ Code): read it when you start, append
+  your entry before you end — sessions in THIS repo included.
 - `atlas-engine` (private) — the data engine + causal ledger. The consoles'
   measured figures should trace to observations in its DATA_LAKE; when you
   refresh data here, also run it through `atlas import` there so every
   surface carries the same measurement.
+- `atlas-authority-site` (public) — the Atlas Authority marketing page plus
+  **Atlas Command**, the live estate console at
+  `www.atlas-authority.com/command/` (hourly feed, baseline-vs-now, ops
+  queue). Its own CLAUDE.md carries the console laws — the label law
+  applies there exactly as here.
 - The **live practice sites** are served from CloudFront via
   `practice-stack/ops/aws/ship_estate.sh` — never from this repo.
