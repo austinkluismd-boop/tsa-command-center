@@ -25,9 +25,13 @@ resulting GSC / GBP / AI-SOV / consult trajectory against this baseline.
 OSA's search equity is split: `okccosmeticsurgeon.com` (legacy, Tebra-
 templated) holds ~5× the keywords; `oklahomasurgicalarts.com` holds the
 brand. One 301 consolidation merges them — the Network Solutions
-credential vaulted 2026-08-12 is the lever. On the TSA side the relaunch
-left at least one indexed-but-404 tree (`/before-after-photos/*`) that
-must 301 into `/gallery/{caseId}` per the gallery schema. Host-level
+credential vaulted 2026-08-12 is the lever. On the TSA side the
+2026-08-12 group-console record describes the `/before-after-photos/*`
+tree as indexed-but-404 (its gallery schema routes it into
+`/gallery/{caseId}`); this session could not re-verify liveness
+(egress-gated), so every TSA legacy-tree rule ships **apply-if-dead** —
+`verify_redirects.py` establishes deadness before any 301 is applied,
+and a page still serving 200 stays put. Host-level
 rules (http→https, apex↔www) and per-URL rules both live in
 `redirects.json`; the catch-all guarantees no legacy URL escapes.
 

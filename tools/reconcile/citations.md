@@ -1,9 +1,12 @@
 # External corroboration / citation queue — ordered by measured leverage
 
 Ordering source: the AI-SOV baseline's citation leaderboard
-(`CC_DATA.sov.citations`, 4-run baseline — healthgrades.com cited in 260
-answers, yelp.com 245, webmd.com 241, vitals.com 235, realself.com 211;
-own site 44) plus the 2026-08-04 reputation census. The queue exists to
+(`CC_DATA.sov.citations`, 4-run baseline, runs 17–20, captured
+2026-07-20 → 2026-08-10 — healthgrades.com cited in 260 answers,
+yelp.com 245, webmd.com 241, vitals.com 235, realself.com 211; own site
+44) plus the 2026-08-04 reputation census. **Vintages:** every "#N cited
+(n)" figure below is the 07-20 → 08-10 baseline; every star-rating /
+review-count is the 08-04 census. The queue exists to
 raise **external corroboration of the same canonical entity record**
 (`entity.json`) — the laws still bind: *no citation, no claim*;
 solicitation stays banned (AUTH-04); nothing here touches a phone field
@@ -12,22 +15,25 @@ until the OPS-23 canonical-number decision lands.
 ## Tier 1 — corrections on surfaces AI engines already cite (do first)
 
 1. **Healthgrades** (OPS-8) — #1 cited domain in the baseline (260
-   answers) and our 4.8★/170 sits under the wrong name
-   ("Dr. Lawrence Cuzalina, DDS"). Correcting one field re-points the
-   single highest-leverage citation surface at the canonical entity.
+   answers, 07-20→08-10) and our 4.8★/170 (census 08-04) sits under the
+   wrong name ("Dr. Lawrence Cuzalina, DDS"). Correcting one field
+   re-points the single highest-leverage citation surface at the
+   canonical entity.
 2. **NPPES** (OPS-2) — stale 2007 record (wrong name, dental taxonomy)
    feeds every downstream medical directory; fix upstream before touching
    the directories it feeds.
-3. **Yelp** (OPS-20) — #3 cited (245); three duplicate listings split the
-   entity. Claim + dedupe to one listing per location. Yelp is licensed
-   AI supply; solicitation stays OUT of ask-routing.
-4. **WebMD** — #5 cited (241); 5.0★/65 wearing a "license expired"
-   display flag against a valid OK license 20503. Verify board-record
-   display.
-5. **Vitals** — #6 cited (235); align name/NAP.
-6. **RealSelf** (OPS-9) — #9 cited (211); 3.4★/16 unclaimed is the
-   weakest surface on the board. Claim + complete; no solicitation.
-7. **RateMDs** — 4.4★/70, #3 of 34 Tulsa; align name/NAP.
+3. **Yelp** (OPS-20) — #3 cited (245, 07-20→08-10); three duplicate
+   listings split the entity (census 08-04). Claim + dedupe to one
+   listing per location. Yelp is licensed AI supply; solicitation stays
+   OUT of ask-routing.
+4. **WebMD** — #5 cited (241, 07-20→08-10); 5.0★/65 (census 08-04)
+   wearing a "license expired" display flag against a valid OK license
+   20503. Verify board-record display.
+5. **Vitals** — #6 cited (235, 07-20→08-10); align name/NAP.
+6. **RealSelf** (OPS-9) — #9 cited (211, 07-20→08-10); 3.4★/16 unclaimed
+   (census 08-04) is the weakest surface on the board. Claim + complete;
+   no solicitation.
+7. **RateMDs** — 4.4★/70, #3 of 34 Tulsa (census 08-04); align name/NAP.
 8. **SRC** (OPS-10) — merge the two duplicate master-surgeon listings;
    surgicalreview.org is a credential corroborator for the sameAs graph.
 
@@ -66,8 +72,10 @@ until the OPS-23 canonical-number decision lands.
 The entity sweep behind `entity.json → sweep_2026_08_25` adds three items
 to Tier 1 and sharpens two existing ones:
 
-- **Yelp — OSA market**: there is NO Oklahoma Surgical Arts listing.
-  Instead **"Parkway Medical" still occupies OSA's exact address** and a
+- **Yelp — OSA market**: no Oklahoma Surgical Arts listing surfaced in
+  the sweep (non-appearance in the index, not proof of nonexistence).
+  What did surface: **"Parkway Medical" still occupies OSA's exact
+  address** and a
   **"Cosmetic Surgery Center"** listing (405-265-9255, 9617 S
   Pennsylvania) carries the old brand at an old address. Converting/
   retiring these two IS the OSA Yelp citation build — do it with the

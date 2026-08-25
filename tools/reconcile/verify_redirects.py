@@ -157,11 +157,33 @@ def check_host_hygiene(host: str) -> dict:
             robots = r.read(65536).decode("utf-8", "replace")
         out["robots_status"] = 200
         out["sitemap_directive"] = bool(re.search(r"(?mi)^\s*sitemap\s*:", robots))
+        # group-aware: an agent counts as blocked only if a group naming it
+        # carries "Disallow: /" (the managed AI-block pattern) - a group that
+        # merely mentions the agent, or allows it, is not a block
+        groups = []  # (agents, disallow_root) per robots.txt group
+        cur_agents, cur_rules_started, cur_disallow_root = [], False, False
+        for raw in robots.splitlines():
+            line = raw.split("#", 1)[0].strip()
+            if not line:
+                continue
+            m_ua = re.match(r"(?i)^user-agent\s*:\s*(.+)$", line)
+            if m_ua:
+                if cur_rules_started:  # a UA line after rules starts a new group
+                    groups.append((cur_agents, cur_disallow_root))
+                    cur_agents, cur_rules_started, cur_disallow_root = [], False, False
+                cur_agents.append(m_ua.group(1).strip())
+            elif re.match(r"(?i)^(allow|disallow|crawl-delay)\s*:", line):
+                cur_rules_started = True
+                if re.match(r"(?i)^disallow\s*:\s*/\s*$", line):
+                    cur_disallow_root = True
+        if cur_agents:
+            groups.append((cur_agents, cur_disallow_root))
+        blocked = {a.lower() for agents, dis in groups if dis for a in agents}
         out["ai_agents_disallowed"] = sorted({
             ua for ua in ("GPTBot", "ClaudeBot", "Google-Extended", "CCBot", "Amazonbot",
                           "Applebot-Extended", "Bytespider", "meta-externalagent",
                           "CloudflareBrowserRenderingCrawler")
-            if re.search(rf"(?mi)^\s*user-agent\s*:\s*{re.escape(ua)}\b", robots)})
+            if ua.lower() in blocked})
     except Exception as e:
         out["robots_error"] = str(e)[:200]
     for sm in (f"https://{host}/sitemap.xml", f"https://{host}/sitemap_index.xml"):
@@ -213,9 +235,13 @@ def main() -> None:
     for rule in doc.get("tsa_rules", []):
         legacy, target = rule["legacy_url"], rule["target_url"]
         res = follow(legacy)
-        if res["final_status"] == 200 and not any(
-                h.get("status") in (301, 302, 303, 307, 308) for h in res["chain"]):
-            verdict, notes = "PASS", ["alive - serves 200 in place, no repair needed"]
+        redirected = any(h.get("status") in (301, 302, 303, 307, 308) for h in res["chain"])
+        if res["final_status"] == 200 and host_of(res["final_url"]) == host_of(legacy) \
+                and (not redirected or res["final_url"].split("?")[0].rstrip("/").lower()
+                     == legacy.split("?")[0].rstrip("/").lower()):
+            note = ("alive - serves 200 in place, no repair needed" if not redirected
+                    else "alive - 200 via a cosmetic same-URL redirect (slash/case), no repair needed")
+            verdict, notes = "PASS", [note]
         elif res["final_status"] and res["final_status"] >= 400:
             verdict, notes = "FAIL", [f"dead ({res['final_status']}) - apply the repair 301 to {target}"]
         elif res["final_status"] is None:

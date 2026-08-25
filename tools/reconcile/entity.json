@@ -175,7 +175,7 @@
         "OPS-20"
       ],
       "status": "OPEN",
-      "observed_2026_08_25": "3 Tulsa listings confirmed at 7322 E 91st St (tulsa-surgical-arts-tulsa-3, combined TSA+Bella-Roma, bella-roma-medical-spa); NO Oklahoma Surgical Arts listing exists — instead 'PARKWAY MEDICAL' sits at OSA's address and 'COSMETIC SURGERY CENTER' (405-265-9255) at 9617 S Pennsylvania"
+      "observed_2026_08_25": "3 Tulsa listings confirmed at 7322 E 91st St (tulsa-surgical-arts-tulsa-3, combined TSA+Bella-Roma, bella-roma-medical-spa); no Oklahoma Surgical Arts listing surfaced in the sweep (non-appearance in the index, not proof of nonexistence) — what DID surface at OSA's address is 'PARKWAY MEDICAL', and 'COSMETIC SURGERY CENTER' (405-265-9255) at 9617 S Pennsylvania carries the old brand"
     },
     {
       "surface": "RateMDs",
@@ -184,7 +184,7 @@
       "action": "align name/NAP to canonical",
       "ops": [],
       "status": "OPEN",
-      "observed_2026_08_25": "URL slug 'Dr-L.+ANGELO-Cuzalina' (initial-first variant); title reads 'Dr. Angelo Cuzalina - Tulsa, OK - Cosmetic Surgery'"
+      "observed_2026_08_25": "URL slug 'Dr-L.+ANGELO-Cuzalina' (initial-first variant); title reads 'Dr. Angelo Cuzalina - Tulsa, OK - Cosmetic Surgeon / Physician'"
     },
     {
       "surface": "WebMD",
@@ -237,7 +237,7 @@
       },
       {
         "surface": "yelp",
-        "finding": "'COSMETIC SURGERY CENTER' listing under the old OSA brand at 9617 S Pennsylvania Ave with phone 405-265-9255 — a FOURTH phone variant and a second address in the entity graph",
+        "finding": "'COSMETIC SURGERY CENTER' listing under the old OSA brand at 9617 S Pennsylvania Ave with phone 405-265-9255 — a previously unrecorded phone number and a second address in the entity graph",
         "action": "reconcile: close/merge or mark moved to 12400 Saint Andrew's Dr"
       },
       {
@@ -277,7 +277,7 @@
       },
       {
         "surface": "apple-maps",
-        "finding": "TSA place exists: maps.apple.com place-id I89D95DF225980C2F (unclaimed)",
+        "finding": "TSA place exists: maps.apple.com place-id I89D95DF225980C2F (08-25 index observation); claim status 'unclaimed' is the separate 2026-08-12 readback — not visible in the search result",
         "action": "claim via Apple Business Connect (OPS-19) using this place-id"
       },
       {
