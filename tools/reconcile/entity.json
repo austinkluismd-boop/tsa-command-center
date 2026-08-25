@@ -28,8 +28,15 @@
         "phone": {
           "status": "UNRESOLVED — OPS-23 (P0, owner Austin + Dr. C)",
           "candidates": [
-            {"number": "(918) 392-7900", "seen_on": "GBP listing (owner dashboard readback 2026-08-07)", "note": "likely Yext tracked number"},
-            {"number": "918-392-0880", "seen_on": "site NAP"}
+            {
+              "number": "(918) 392-7900",
+              "seen_on": "GBP listing (owner dashboard readback 2026-08-07)",
+              "note": "likely Yext tracked number"
+            },
+            {
+              "number": "918-392-0880",
+              "seen_on": "site NAP"
+            }
           ],
           "rule": "ONE canonical number for GBP + site + every citation; DNI pools exclude it; Yext UTM/tracking remnants killed deliberately. Until decided, no citation-building touches a phone field."
         },
@@ -41,19 +48,28 @@
       },
       "osa": {
         "name": "Oklahoma Surgical Arts",
-        "site": "https://www.oklahomasurgicalarts.com/",
+        "site": "https://oklahomasurgicalarts.com/",
         "legacy_domain": "okccosmeticsurgeon.com — 301-consolidates per tools/reconcile/redirects.json; citations that reference the legacy domain get updated to the brand host as they are worked",
         "address": "12400 Saint Andrew's Dr, Oklahoma City, OK 73120",
         "phone": "405-751-0042",
         "hours": "Mon-Fri 7:30a-4:30p",
         "tagline": "Oklahoma's Premier Breast Augmentation Surgical Center",
-        "providers": ["Fogleman", "Cuzalina", "Nelson", "Eid", "Champion", "Gutierrez", "Tolomeo"],
+        "providers": [
+          "Fogleman",
+          "Cuzalina",
+          "Nelson",
+          "Eid",
+          "Champion",
+          "Gutierrez",
+          "Tolomeo"
+        ],
         "gbp": {
           "observed": "NEW profile live 2026-08-12; 1,130 lifetime views; profile photo is a street view of the parking lot; owner confirmed Dr. Angelo Cuzalina",
           "observed_date": "2026-08-12",
           "action": "full build-out to flagship schema — primary + secondary categories, every service, hours, attributes, booking URL, professional imagery"
         },
-        "facebook": "facebook.com/p/Oklahoma-Surgical-Arts-61578040036407 (new page, 2026-08-12)"
+        "facebook": "facebook.com/p/Oklahoma-Surgical-Arts-61578040036407 (new page, 2026-08-12)",
+        "site_note": "canonical form https + apex, matching the 08-25 index observations and redirects.json host_rules"
       },
       "bella_roma": {
         "name": "Bella Roma Medical Spa",
@@ -64,20 +80,226 @@
     }
   },
   "surfaces": [
-    {"surface": "GBP — TSA", "observed": "verified, 4.9/523, but listing phone (918) 392-7900 vs site NAP 918-392-0880", "observed_date": "2026-08-07", "action": "resolve OPS-23 phone decision, then align listing + site + citations to the one number; enable edit-diff monitoring + practitioner listings + suspension dossier (OPS-21)", "ops": ["OPS-23", "OPS-21", "OPS-7"], "status": "BLOCKED-ON-DECISION"},
-    {"surface": "GBP — OSA", "observed": "new listing (2026-08-12), skeleton state, parking-lot photo, 1,130 lifetime views", "observed_date": "2026-08-12", "action": "build out to flagship schema; NAP must read exactly: Oklahoma Surgical Arts · 12400 Saint Andrew's Dr, Oklahoma City, OK 73120 · 405-751-0042", "ops": [], "status": "OPEN"},
-    {"surface": "Bing Places + Bing Webmaster", "observed": "NOT CONNECTED (integrations.bing); no Bing Webmaster verification for any estate host", "observed_date": "2026-08-25", "action": "claim Bing Places for TSA + OSA (import from GBP once canonical), verify both hosts in Bing Webmaster Tools via the same DNS TXT path as GSC, submit sitemaps (OPS-3); Bing feeds Copilot + partly ChatGPT browsing — it is an AI-SOV surface, not an afterthought", "ops": ["OPS-3", "OPS-27"], "status": "OPEN"},
-    {"surface": "Google Search Console", "observed": "required TXT observed serving in DNS 2026-08-07T22:38Z; Verify not yet clicked; foreign BFXT token present", "observed_date": "2026-08-07", "action": "click Verify, add SA user, enable Generative-AI report (no backfill — every unverified day is lost data), audit foreign token holder (OPS-24); then pull indexed-URL export for the redirects.json diff", "ops": ["OPS-18", "OPS-24", "OPS-12"], "status": "OPEN"},
-    {"surface": "Apple Business Connect", "observed": "unclaimed (TSA + Bella Roma)", "observed_date": "2026-08-12", "action": "claim place cards; decide Maps Ads posture after baseline (LOCAL-07)", "ops": ["OPS-19"], "status": "OPEN"},
-    {"surface": "NPPES", "observed": "NPI 1376625830 stale since 2007 — 'Lawrence Cuzalina', dental taxonomy", "observed_date": "2026-08-04", "action": "add other-name 'Angelo Cuzalina' + MD taxonomy", "ops": ["OPS-2"], "status": "OPEN"},
-    {"surface": "Healthgrades", "observed": "listed as 'Dr. Lawrence Cuzalina, DDS' — 4.8/170 orphaned under the wrong name; most-cited domain in the AI-SOV baseline (260 answers)", "observed_date": "2026-08-04", "action": "correct listing name to practice + Angelo Cuzalina, MD, DDS; align NAP to canonical", "ops": ["OPS-8"], "status": "OPEN"},
-    {"surface": "RealSelf", "observed": "3.4/16, 70% worth-it, UNCLAIMED — weakest surface; realself.com is #9 in the AI-citation leaderboard (211 answers)", "observed_date": "2026-08-04", "action": "claim + complete profile; no solicitation (AUTH-04)", "ops": ["OPS-9"], "status": "OPEN"},
-    {"surface": "Yelp", "observed": "3 listings per dossier; 23 reviews visible; yelp.com is #3 in the AI-citation leaderboard (245 answers) and licensed AI supply", "observed_date": "2026-08-04", "action": "claim + dedupe to one listing per location; solicitation stays banned and OUT of ask-routing", "ops": ["OPS-20"], "status": "OPEN"},
-    {"surface": "RateMDs", "observed": "4.4/70, #3 of 34 Tulsa", "observed_date": "2026-08-04", "action": "align name/NAP to canonical", "ops": [], "status": "OPEN"},
-    {"surface": "WebMD", "observed": "5.0/65 with a 'license expired' display flag", "observed_date": "2026-08-04", "action": "verify OK board record display; align NAP", "ops": [], "status": "OPEN"},
-    {"surface": "Vitals", "observed": "4.6/62", "observed_date": "2026-08-04", "action": "align name/NAP to canonical", "ops": [], "status": "OPEN"},
-    {"surface": "SRC (surgicalreview.org)", "observed": "duplicate listings: lawrence-angelo-cuzalina-md + dr-angelo-cuzalina", "observed_date": "2026-08-04", "action": "merge duplicates", "ops": ["OPS-10"], "status": "OPEN"},
-    {"surface": "Wikidata", "observed": "no QIDs (person or org)", "observed_date": "2026-08-12", "action": "paste prepared QuickStatements (person, then org), return QIDs to config — knowledge-panel prerequisite", "ops": ["OPS-16"], "status": "OPEN"}
+    {
+      "surface": "GBP — TSA",
+      "observed": "verified, 4.9/523, but listing phone (918) 392-7900 vs site NAP 918-392-0880",
+      "observed_date": "2026-08-07",
+      "action": "resolve OPS-23 phone decision, then align listing + site + citations to the one number; enable edit-diff monitoring + practitioner listings + suspension dossier (OPS-21)",
+      "ops": [
+        "OPS-23",
+        "OPS-21",
+        "OPS-7"
+      ],
+      "status": "BLOCKED-ON-DECISION"
+    },
+    {
+      "surface": "GBP — OSA",
+      "observed": "new listing (2026-08-12), skeleton state, parking-lot photo, 1,130 lifetime views",
+      "observed_date": "2026-08-12",
+      "action": "build out to flagship schema; NAP must read exactly: Oklahoma Surgical Arts · 12400 Saint Andrew's Dr, Oklahoma City, OK 73120 · 405-751-0042",
+      "ops": [],
+      "status": "OPEN"
+    },
+    {
+      "surface": "Bing Places + Bing Webmaster",
+      "observed": "NOT CONNECTED (integrations.bing); no Bing Webmaster verification for any estate host",
+      "observed_date": "2026-08-25",
+      "action": "claim Bing Places for TSA + OSA (import from GBP once canonical), verify both hosts in Bing Webmaster Tools via the same DNS TXT path as GSC, submit sitemaps (OPS-3); Bing feeds Copilot + partly ChatGPT browsing — it is an AI-SOV surface, not an afterthought",
+      "ops": [
+        "OPS-3",
+        "OPS-27"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "surface": "Google Search Console",
+      "observed": "required TXT observed serving in DNS 2026-08-07T22:38Z; Verify not yet clicked; foreign BFXT token present",
+      "observed_date": "2026-08-07",
+      "action": "click Verify, add SA user, enable Generative-AI report (no backfill — every unverified day is lost data), audit foreign token holder (OPS-24); then pull indexed-URL export for the redirects.json diff",
+      "ops": [
+        "OPS-18",
+        "OPS-24",
+        "OPS-12"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "surface": "Apple Business Connect",
+      "observed": "unclaimed (TSA + Bella Roma)",
+      "observed_date": "2026-08-12",
+      "action": "claim place cards; decide Maps Ads posture after baseline (LOCAL-07)",
+      "ops": [
+        "OPS-19"
+      ],
+      "status": "OPEN",
+      "observed_2026_08_25": "TSA place-id I89D95DF225980C2F observed on maps.apple.com"
+    },
+    {
+      "surface": "NPPES",
+      "observed": "NPI 1376625830 stale since 2007 — 'Lawrence Cuzalina', dental taxonomy",
+      "observed_date": "2026-08-04",
+      "action": "add other-name 'Angelo Cuzalina' + MD taxonomy",
+      "ops": [
+        "OPS-2"
+      ],
+      "status": "OPEN"
+    },
+    {
+      "surface": "Healthgrades",
+      "observed": "listed as 'Dr. Lawrence Cuzalina, DDS' — 4.8/170 orphaned under the wrong name; most-cited domain in the AI-SOV baseline (260 answers)",
+      "observed_date": "2026-08-04",
+      "action": "correct listing name to practice + Angelo Cuzalina, MD, DDS; align NAP to canonical",
+      "ops": [
+        "OPS-8"
+      ],
+      "status": "OPEN",
+      "observed_2026_08_25": "still 'Dr. Lawrence Cuzalina, DDS'; phone (405) 698-3858 on the personal listing; duplicate group listings u39gbb9 + x2dv64"
+    },
+    {
+      "surface": "RealSelf",
+      "observed": "3.4/16, 70% worth-it, UNCLAIMED — weakest surface; realself.com is #9 in the AI-citation leaderboard (211 answers)",
+      "observed_date": "2026-08-04",
+      "action": "claim + complete profile; no solicitation (AUTH-04)",
+      "ops": [
+        "OPS-9"
+      ],
+      "status": "OPEN",
+      "observed_2026_08_25": "profile live at realself.com/dr/angelo-cuzalina-tulsa-ok titled 'Oral & Maxillofacial Surgery'; negative neck-lift review page ranking on name query"
+    },
+    {
+      "surface": "Yelp",
+      "observed": "3 listings per dossier; 23 reviews visible; yelp.com is #3 in the AI-citation leaderboard (245 answers) and licensed AI supply",
+      "observed_date": "2026-08-04",
+      "action": "claim + dedupe to one listing per location; solicitation stays banned and OUT of ask-routing",
+      "ops": [
+        "OPS-20"
+      ],
+      "status": "OPEN",
+      "observed_2026_08_25": "3 Tulsa listings confirmed at 7322 E 91st St (tulsa-surgical-arts-tulsa-3, combined TSA+Bella-Roma, bella-roma-medical-spa); NO Oklahoma Surgical Arts listing exists — instead 'PARKWAY MEDICAL' sits at OSA's address and 'COSMETIC SURGERY CENTER' (405-265-9255) at 9617 S Pennsylvania"
+    },
+    {
+      "surface": "RateMDs",
+      "observed": "4.4/70, #3 of 34 Tulsa",
+      "observed_date": "2026-08-04",
+      "action": "align name/NAP to canonical",
+      "ops": [],
+      "status": "OPEN",
+      "observed_2026_08_25": "URL slug 'Dr-L.+ANGELO-Cuzalina' (initial-first variant); title reads 'Dr. Angelo Cuzalina - Tulsa, OK - Cosmetic Surgery'"
+    },
+    {
+      "surface": "WebMD",
+      "observed": "5.0/65 with a 'license expired' display flag",
+      "observed_date": "2026-08-04",
+      "action": "verify OK board record display; align NAP",
+      "ops": [],
+      "status": "OPEN",
+      "observed_2026_08_25": "listed 'Dr. Lawrence Cuzalina, MD, Plastic Surgery'; snippet carries full name 'Dr. Lawrence Angelo Cuzalina'"
+    },
+    {
+      "surface": "Vitals",
+      "observed": "4.6/62",
+      "observed_date": "2026-08-04",
+      "action": "align name/NAP to canonical",
+      "ops": [],
+      "status": "OPEN",
+      "observed_2026_08_25": "filed under /dentists/ path; 'Lawrence A. Cuzalina'"
+    },
+    {
+      "surface": "SRC (surgicalreview.org)",
+      "observed": "duplicate listings: lawrence-angelo-cuzalina-md + dr-angelo-cuzalina",
+      "observed_date": "2026-08-04",
+      "action": "merge duplicates",
+      "ops": [
+        "OPS-10"
+      ],
+      "status": "OPEN",
+      "observed_2026_08_25": "listing 'Lawrence Angelo Cuzalina, MD' live at /lawrence-angelo-cuzalina-md/; practice listed as 'Tulsa Surgical Arts & Medical Spa'"
+    },
+    {
+      "surface": "Wikidata",
+      "observed": "no QIDs (person or org)",
+      "observed_date": "2026-08-12",
+      "action": "paste prepared QuickStatements (person, then org), return QIDs to config — knowledge-panel prerequisite",
+      "ops": [
+        "OPS-16"
+      ],
+      "status": "OPEN"
+    }
   ],
-  "freshness": "Every observed_date above is the surface's own vintage; the 2026-08-04 rows come from the TSA_WEB_DOSSIER census, 2026-08-07/08-12 rows from owner dashboard/credential intake readbacks recorded in the consoles, 2026-08-25 rows from this session. Surfaces are re-dated individually as they are worked — never as a batch."
+  "freshness": "Every observed_date above is the surface's own vintage; the 2026-08-04 rows come from the TSA_WEB_DOSSIER census, 2026-08-07/08-12 rows from owner dashboard/credential intake readbacks recorded in the consoles, 2026-08-25 rows from this session. Surfaces are re-dated individually as they are worked — never as a batch. The observed_2026_08_25 fields and sweep_2026_08_25 block are this session's search-index observations — titles/snippets only, no page fetches (egress-gated).",
+  "sweep_2026_08_25": {
+    "method": "search-index entity sweep (site:-scoped + NAP-variant queries, 5 agent batches, evidence limited to what the index literally displayed)",
+    "new_anomalies": [
+      {
+        "surface": "yelp",
+        "finding": "'PARKWAY MEDICAL' listing still live at OSA's exact address (yelp.com/biz/parkway-medical-oklahoma-city, category Cosmetic Surgeons) — the previous tenant's listing occupies the location",
+        "action": "claim/close or convert to Oklahoma Surgical Arts; this listing will otherwise absorb location-based citations"
+      },
+      {
+        "surface": "yelp",
+        "finding": "'COSMETIC SURGERY CENTER' listing under the old OSA brand at 9617 S Pennsylvania Ave with phone 405-265-9255 — a FOURTH phone variant and a second address in the entity graph",
+        "action": "reconcile: close/merge or mark moved to 12400 Saint Andrew's Dr"
+      },
+      {
+        "surface": "facebook",
+        "finding": "legacy page 'Cosmetic Surgery Center' (facebook.com/OklahomaCosmeticSurgery) live alongside the new OSA page (61578040036407)",
+        "action": "merge or retire the legacy page so the entity has ONE Facebook presence per market"
+      },
+      {
+        "surface": "healthgrades",
+        "finding": "personal listing carries phone (405) 698-3858 — a phone variant recorded on no other surface; TWO Tulsa Surgical Arts group listings exist (slugs u39gbb9 and x2dv64)",
+        "action": "fold into OPS-8: fix name AND phone AND merge duplicate group listings"
+      },
+      {
+        "surface": "vitals",
+        "finding": "profile filed under /dentists/ URL path while titled 'Plastic Surgeon'; name 'Lawrence A. Cuzalina'",
+        "action": "request specialty + name correction (downstream of the NPPES fix, OPS-2)"
+      },
+      {
+        "surface": "tebra",
+        "finding": "tebra.com practice listing categorizes Oklahoma Surgical Arts as 'OBGYN'",
+        "action": "correct category — Tebra powers the legacy site platform, so this record likely feeds other surfaces"
+      },
+      {
+        "surface": "lourdesrmc",
+        "finding": "hospital directory lists Dr. Trent Fogleman under 'Obstetrics and Gynecology'",
+        "action": "request cosmetic-surgery specialty display (his ABOG history explains the category; the display should match current practice)"
+      },
+      {
+        "surface": "realself",
+        "finding": "profile titled 'Board Certified in Oral & Maxillofacial Surgery'; a negative review page ('Devastating — neck lift') ranks on his name query",
+        "action": "claiming (OPS-9) enables specialty correction; the review page is a reputation observation, NOT a solicitation trigger (AUTH-04)"
+      },
+      {
+        "surface": "name-variants",
+        "finding": "four first-name forms in the wild: 'Angelo Cuzalina' (RateMDs title), 'Lawrence Cuzalina' (Healthgrades/WebMD/Healthline slug), 'Lawrence Angelo Cuzalina, MD' (SRC), 'Angelo L. Cuzalina' (ABCS, IntechOpen)",
+        "action": "the JSON-LD alternateName plan covers this; each directory correction should converge on Angelo Cuzalina, MD, DDS"
+      },
+      {
+        "surface": "apple-maps",
+        "finding": "TSA place exists: maps.apple.com place-id I89D95DF225980C2F (unclaimed)",
+        "action": "claim via Apple Business Connect (OPS-19) using this place-id"
+      },
+      {
+        "surface": "instagram/threads",
+        "finding": "@tulsasurgicalarts displays as 'Dr. Angelo Cuzalina • Tulsa Cosmetic Surgeon' rather than the practice name",
+        "action": "decide person-brand vs practice-brand display deliberately; record the decision in the canonical record"
+      },
+      {
+        "surface": "legacy-host",
+        "finding": "okccosmeticsurgeon.com interior pages still titled 'Cosmetic Surgery Center' while its homepage says 'Oklahoma Surgical Arts' — the legacy host carries two brands simultaneously",
+        "action": "resolved by the 301 consolidation (redirects.json)"
+      },
+      {
+        "surface": "brand-host",
+        "finding": "oklahomasurgicalarts.com /contact-us and /testimonials still carry 'Dr. J Dan Metcalf, Parkway Medical' content — the consolidation TARGET carries the previous tenant's entity",
+        "action": "purge/replace Parkway-era pages before or with the 301 cutover (see redirects.json brand_host_defects)"
+      },
+      {
+        "surface": "name-collision",
+        "finding": "'Cosmetic Surgical Arts & Rejuvenation' (cosmeticsurgicalartsokc.com) ranks on OSA brand queries; 'Green Country Surgical Arts' on TSA queries",
+        "action": "no action against competitors — entity disambiguation (schema, GBP categories, consistent NAP) is the defense"
+      }
+    ]
+  }
 }

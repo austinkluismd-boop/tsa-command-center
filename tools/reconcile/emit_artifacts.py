@@ -53,6 +53,8 @@ def cloudflare(doc: dict) -> str:
     # Cloudflare bulk-redirect CSV columns:
     # source_url,target_url,status_code,preserve_query_string,include_subdomains,subpath_matching,preserve_path_suffix
     for rule in doc["rules"]:
+        if rule["legacy_path"] == "/":
+            continue  # the catch-all row below covers the homepage
         legacy_host = doc["legacy_host"]
         w.writerow([f"{legacy_host}{rule['legacy_path']}", rule["target_url"], 301,
                     "true", "true", "false", "false"])

@@ -61,6 +61,27 @@ until the OPS-23 canonical-number decision lands.
     okccosmeticsurgeon.com are updated to the brand host as each surface
     is worked.
 
+## 2026-08-25 sweep addendum (search-index observations)
+
+The entity sweep behind `entity.json → sweep_2026_08_25` adds three items
+to Tier 1 and sharpens two existing ones:
+
+- **Yelp — OSA market**: there is NO Oklahoma Surgical Arts listing.
+  Instead **"Parkway Medical" still occupies OSA's exact address** and a
+  **"Cosmetic Surgery Center"** listing (405-265-9255, 9617 S
+  Pennsylvania) carries the old brand at an old address. Converting/
+  retiring these two IS the OSA Yelp citation build — do it with the
+  Tulsa dedupe in item 3.
+- **Facebook — legacy page**: `facebook.com/OklahomaCosmeticSurgery`
+  ("Cosmetic Surgery Center") is live alongside the new OSA page — merge
+  or retire so each market has one page.
+- **Tebra category fix**: tebra.com lists OSA as "OBGYN" — correct it;
+  Tebra powers the legacy site platform, so the record likely syndicates.
+- Healthgrades (item 1) also needs the **(405) 698-3858 phone variant**
+  removed and the **duplicate group listings (u39gbb9/x2dv64)** merged.
+- Vitals (item 5) is filed under a `/dentists/` URL path — the specialty
+  correction rides the NPPES fix (item 2).
+
 ## Sequencing rule
 
 Tier 1 items are independent and can run in parallel — except any field

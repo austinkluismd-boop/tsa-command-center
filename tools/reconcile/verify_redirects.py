@@ -208,6 +208,26 @@ def main() -> None:
             counts[worst] += 1
             print(f"{worst:4}  {legacy}  ->  {target}" + (f"  [{'; '.join(all_notes[:2])}]" if all_notes else ""))
 
+    # tsa_rules are apply-if-dead: a legacy-tree page still serving 200 is
+    # healthy as-is; only a dead one needs its repair 301 applied
+    for rule in doc.get("tsa_rules", []):
+        legacy, target = rule["legacy_url"], rule["target_url"]
+        res = follow(legacy)
+        if res["final_status"] == 200 and not any(
+                h.get("status") in (301, 302, 303, 307, 308) for h in res["chain"]):
+            verdict, notes = "PASS", ["alive - serves 200 in place, no repair needed"]
+        elif res["final_status"] and res["final_status"] >= 400:
+            verdict, notes = "FAIL", [f"dead ({res['final_status']}) - apply the repair 301 to {target}"]
+        elif res["final_status"] is None:
+            verdict, notes = "FAIL", [f"unreachable: {res['chain'][-1].get('error', 'unknown')}"]
+        else:
+            verdict, notes = grade(target, res, host_level=False)
+            notes = ["redirect already in place; graded against the mapped target"] + notes
+        rule["verify"] = {"status": verdict, "date": today, "notes": notes,
+                          "chain": res["chain"]}
+        counts[verdict] += 1
+        print(f"{verdict:4}  {legacy}  [{notes[0]}]")
+
     doc["hygiene"] = [check_host_hygiene(h) for h in doc.get("destination_hosts", [])]
     doc["verified_at"] = today
     out = a.inp.with_suffix(".verified.json")

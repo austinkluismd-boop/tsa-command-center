@@ -1,0 +1,2505 @@
+{
+ "generated": "2026-08-25",
+ "method": "search-index sweep: 22 site:-scoped query batches across 3 hosts (every URL copied verbatim from the index) + 1 mapping agent + 2 independent adversarial verifiers (88/89 rows approved by both; the /services confidence grade was downgraded per the mechanical verifier). Evidence class: indexation observation, not a full crawl.",
+ "gated": [
+  "live HTTP verification: this session's egress policy 403s the practice hosts - every rule ships PENDING-LIVE-FETCH; run verify_redirects.py from an open-egress machine",
+  "GSC indexed-URL export: GSC verification itself is still pending (OPS-18); diff the export against this file when available",
+  "Wayback CDX for both hosts: web.archive.org egress-blocked this session",
+  "Semrush URL-level reports: API units exhausted 2026-08-25 (units page: semrush.com/mcp-access) - host-level figures remain 2026-08-23/08-12 vintage"
+ ],
+ "legacy_host": "https://okccosmeticsurgeon.com",
+ "brand_host": "https://oklahomasurgicalarts.com",
+ "destination_hosts": [
+  "oklahomasurgicalarts.com",
+  "tulsasurgicalarts.com"
+ ],
+ "fallback_target": "https://oklahomasurgicalarts.com/",
+ "host_rules": [
+  {
+   "legacy": "https://www.okccosmeticsurgeon.com/",
+   "target": "https://oklahomasurgicalarts.com/",
+   "variants": [
+    "http://okccosmeticsurgeon.com/",
+    "https://okccosmeticsurgeon.com/",
+    "http://www.okccosmeticsurgeon.com/",
+    "https://www.okccosmeticsurgeon.com/"
+   ],
+   "policy": "301 host consolidation - every scheme/host variant of the legacy domain lands on the brand apex; per-path rules below take precedence, this is the catch-all",
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy": "https://www.oklahomasurgicalarts.com/",
+   "target": "https://oklahomasurgicalarts.com/",
+   "variants": [
+    "http://oklahomasurgicalarts.com/",
+    "http://www.oklahomasurgicalarts.com/",
+    "https://www.oklahomasurgicalarts.com/"
+   ],
+   "policy": "brand host canonicalizes to https + apex (the 08-25 index observations all carry the apex form)",
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy": "https://www.tulsasurgicalarts.com/",
+   "target": "https://tulsasurgicalarts.com/",
+   "variants": [
+    "http://tulsasurgicalarts.com/",
+    "http://www.tulsasurgicalarts.com/",
+    "https://www.tulsasurgicalarts.com/"
+   ],
+   "policy": "flagship canonicalizes to https + apex (the 08-25 index observations all carry the apex form)",
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  }
+ ],
+ "rules": [
+  {
+   "legacy_path": "/services/minimally-invasive-cosmetic-surgery-scar-less-surgery",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/services/minimally-invasive-cosmetic-surgery-scar-less-surgery",
+   "confidence": "weak",
+   "basis": "Legacy page covers the practice's minimally invasive/'scar-less' surgical approach; no equivalent overview page exists on the brand host, so fallback is the homepage / which introduces the practice's surgical offering.",
+   "evidence": {
+    "indexed_title": "Minimally Invasive Cosmetic Surgery / \u2019Scar-less\u2019 Surgery - Oklahoma City, OK: Oklahoma Surgical Arts: Cosmetic Surgeon",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/minimally-invasive-cosmetic-surgery",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/services/liposuction",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/services/liposuction",
+   "confidence": "exact",
+   "basis": "Liposuction procedure page exists on the brand host with the same procedure topic.",
+   "evidence": {
+    "indexed_title": "Liposuction Specialist - Oklahoma City, OK: Oklahoma Surgical Arts: Cosmetic Surgeon",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/liposuction"
+  },
+  {
+   "legacy_path": "/contents/nonsurgical/sculptra",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/nonsurgical/sculptra",
+   "confidence": "weak",
+   "basis": "Sculptra is an injectable biostimulator treatment; the brand host has no nonsurgical/injectable pages at all, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Sculptra - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/sculptra",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/services",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/services",
+   "confidence": "weak",
+   "basis": "Legacy services index has no dedicated procedures-index page on the brand host; the homepage / acts as the parent hub linking all procedure pages, so it is the fallback.",
+   "evidence": {
+    "indexed_title": "Services - Cosmetic Surgeons Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "flagged"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/services",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/nonsurgical/tempsure-firm",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/nonsurgical/tempsure-firm",
+   "confidence": "weak",
+   "basis": "TempSure Firm is an RF skin-tightening treatment with no nonsurgical equivalent on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "TempSure Firm - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/tempsure-firm",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/services/skin-rejuvenation",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/services/skin-rejuvenation",
+   "confidence": "weak",
+   "basis": "Skin rejuvenation service has no confirmed counterpart (brand host lists surgical procedures only); fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Skin Rejuvenation Specialist - Oklahoma City, OK: Oklahoma Surgical Arts: Cosmetic Surgeon",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/skin-rejuvenation",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/nonsurgical/icon-laser",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/nonsurgical/icon-laser",
+   "confidence": "weak",
+   "basis": "Icon laser (IPL/non-ablative) treatment page has no nonsurgical counterpart on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Icon laser - Oklahoma City, OK: Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/icon-laser",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/nonsurgical/skinmedica-chemical-peels",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/nonsurgical/skinmedica-chemical-peels",
+   "confidence": "weak",
+   "basis": "Chemical peel treatment content has no counterpart on the brand host (no nonsurgical pages confirmed); fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "SkinMedica Chemical Peels - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/chemical-peels",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/services/vaginoplasty-vaginal-tightening",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/services/vaginoplasty-vaginal-tightening",
+   "confidence": "weak",
+   "basis": "Vaginoplasty is a distinct intimate-surgery procedure with no confirmed page or related category on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Vaginoplasty (Vaginal Tightening/Rejuvenation) - Oklahoma City, OK: Oklahoma Surgical Arts: Cosmetic Surgeon",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/vaginoplasty",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/services/facelift",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/services/facelift",
+   "confidence": "weak",
+   "basis": "Facelift is a core facial procedure but the brand host's confirmed facial pages are only blepharoplasty and rhinoplasty (different procedures); fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Facelift Specialist - Oklahoma City, OK: Oklahoma Surgical Arts: Cosmetic Surgeon",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/facelift",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/",
+   "legacy_url": "https://www.okccosmeticsurgeon.com",
+   "confidence": "exact",
+   "basis": "Homepage maps to homepage per consolidation rule; both represent the same practice.",
+   "evidence": {
+    "indexed_title": "Oklahoma Surgical Arts: Cosmetic Surgeons: Oklahoma City, OK",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/"
+  },
+  {
+   "legacy_path": "/contents/gallery/face-lift",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/gallery/face-lift",
+   "confidence": "weak",
+   "basis": "Facelift before/after gallery, but no facelift procedure page exists on the brand host and no other facial page is topically correct; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Facelift - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/facelift",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/facelift-beyond-tightening-your-skin",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/facelift-beyond-tightening-your-skin",
+   "confidence": "weak",
+   "basis": "Facelift blog post; the brand host has no facelift page to receive it, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Facelift \u2014 Beyond Tightening Your Skin: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/facelift",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/my-face-looks-hollow-after-weight-loss-is-it-time-for-a-facelift",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/my-face-looks-hollow-after-weight-loss-is-it-time-for-a-facelift",
+   "confidence": "weak",
+   "basis": "Facelift blog post; no facelift page exists on the brand host, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "My Face Looks Hollow After Weight Loss. Is It Time for a Facelift?: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/facelift",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/resources/gallery/co2-lazer",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/resources/gallery/co2-lazer",
+   "confidence": "weak",
+   "basis": "CO2 laser resurfacing gallery; the brand host has no laser or nonsurgical pages, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "CO2 Lazer - Oklahoma City, OK - Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/co2-laser",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/nonsurgical/renuvion/renuvion-skin-tightening",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/nonsurgical/renuvion/renuvion-skin-tightening",
+   "confidence": "weak",
+   "basis": "Renuvion skin-tightening treatment has no counterpart on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Renuvion Skin Tightening - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/renuvion",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/services/mommy-makeover",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/services/mommy-makeover",
+   "confidence": "exact",
+   "basis": "Mommy makeover procedure page exists on the brand host with the same procedure topic.",
+   "evidence": {
+    "indexed_title": "Mommy Makeover Specialist - Oklahoma City, OK: Oklahoma Surgical Arts: Cosmetic Surgeon",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/mommy-makeover"
+  },
+  {
+   "legacy_path": "/services/breast-augmentation",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/services/breast-augmentation",
+   "confidence": "exact",
+   "basis": "Breast augmentation procedure page exists on the brand host (titled 'Breast Augmentation').",
+   "evidence": {
+    "indexed_title": "Breast Augmentation Specialist - Oklahoma City, OK: Oklahoma Surgical Arts: Cosmetic Surgeon",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/breast-augmentation-1"
+  },
+  {
+   "legacy_path": "/contents/gallery/breast-augmentation-gallery",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/gallery/breast-augmentation-gallery",
+   "confidence": "strong",
+   "basis": "Breast augmentation before/after gallery consolidates to the brand host's breast augmentation procedure page, the same procedure topic.",
+   "evidence": {
+    "indexed_title": "Breast Augmentation Before & After - Oklahoma City, OK: Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/breast-augmentation-1"
+  },
+  {
+   "legacy_path": "/contents/gallery/vertical-mastopexy",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/gallery/vertical-mastopexy",
+   "confidence": "category",
+   "basis": "Vertical mastopexy (breast lift) gallery has no breast-lift page on the brand host; nearest confirmed breast page is /breast-reduction, which incorporates a mastopexy/lift component, so it is the fallback.",
+   "evidence": {
+    "indexed_title": "Vertical Mastopexy (Breast lift) - Oklahoma City, OK: Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/breast-reduction",
+   "create_recommendation": "/breast-lift",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback /breast-reduction until it exists"
+  },
+  {
+   "legacy_path": "/blog/boost-your-profile-and-your-confidence-through-breast-augmentation",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/boost-your-profile-and-your-confidence-through-breast-augmentation",
+   "confidence": "strong",
+   "basis": "Breast augmentation blog post consolidates to the brand host's breast augmentation procedure page.",
+   "evidence": {
+    "indexed_title": "Boost Your Profile (and Your Confidence) Through Breast Augmentation: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/breast-augmentation-1"
+  },
+  {
+   "legacy_path": "/contents/cherry",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/cherry",
+   "confidence": "weak",
+   "basis": "Cherry is a patient-financing platform page; the brand host has no financing or payment page, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Cherry - Oklahoma City, OK: Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/financing",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/testimonials/6",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/testimonials/6",
+   "confidence": "exact",
+   "basis": "Paginated testimonials page consolidates to the brand host's single testimonials page, which exists.",
+   "evidence": {
+    "indexed_title": "Testimonials & Reviews - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/testimonials"
+  },
+  {
+   "legacy_path": "/contents/nonsurgical/facetite",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/nonsurgical/facetite",
+   "confidence": "weak",
+   "basis": "FaceTite RF facial contouring has no nonsurgical counterpart on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "FaceTite - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/facetite",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/resources/gallery/liposuction-gallery",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/resources/gallery/liposuction-gallery",
+   "confidence": "strong",
+   "basis": "Liposuction before/after gallery consolidates to the brand host's liposuction procedure page, the same procedure topic.",
+   "evidence": {
+    "indexed_title": "Liposuction Before & After - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/liposuction"
+  },
+  {
+   "legacy_path": "/contents/gallery/liposuction-gallery",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/gallery/liposuction-gallery",
+   "confidence": "strong",
+   "basis": "Duplicate liposuction gallery URL consolidates to the brand host's liposuction procedure page.",
+   "evidence": {
+    "indexed_title": "Liposuction Before & After - Oklahoma City, OK: Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/liposuction"
+  },
+  {
+   "legacy_path": "/blog/5-reasons-to-consider-liposuction",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/5-reasons-to-consider-liposuction",
+   "confidence": "strong",
+   "basis": "Liposuction blog post consolidates to the brand host's liposuction procedure page.",
+   "evidence": {
+    "indexed_title": "5 Reasons to Consider Liposuction: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/liposuction"
+  },
+  {
+   "legacy_path": "/contents/gallery/abdominoplasty-before-after",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/gallery/abdominoplasty-before-after",
+   "confidence": "strong",
+   "basis": "Abdominoplasty gallery consolidates to the brand host's tummy tuck page, whose title confirms it is the abdominoplasty page.",
+   "evidence": {
+    "indexed_title": "Abdominoplasty Before & After - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/tummy-tuck"
+  },
+  {
+   "legacy_path": "/blog/is-liposuction-painful",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/is-liposuction-painful",
+   "confidence": "strong",
+   "basis": "Liposuction blog post consolidates to the brand host's liposuction procedure page.",
+   "evidence": {
+    "indexed_title": "Is Liposuction Painful?: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/liposuction"
+  },
+  {
+   "legacy_path": "/contents/surgical-procedures-2/abdominoplasty",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/surgical-procedures-2/abdominoplasty",
+   "confidence": "exact",
+   "basis": "Abdominoplasty and tummy tuck are the same procedure, and the brand host's page is titled 'Tummy Tuck - abdominoplasty'.",
+   "evidence": {
+    "indexed_title": "Abdominoplasty - Oklahoma City, OK - Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/tummy-tuck"
+  },
+  {
+   "legacy_path": "/blog/putting-the-finishing-touches-on-your-weight-loss-with-a-tummy-tuck",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/putting-the-finishing-touches-on-your-weight-loss-with-a-tummy-tuck",
+   "confidence": "strong",
+   "basis": "Tummy tuck blog post consolidates to the brand host's tummy tuck procedure page.",
+   "evidence": {
+    "indexed_title": "Putting the Finishing Touches on Your Weight Loss With a Tummy Tuck: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/tummy-tuck"
+  },
+  {
+   "legacy_path": "/blog/5-interesting-facts-about-tummy-tuck-you-didnt-know",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/5-interesting-facts-about-tummy-tuck-you-didnt-know",
+   "confidence": "strong",
+   "basis": "Tummy tuck blog post consolidates to the brand host's tummy tuck procedure page.",
+   "evidence": {
+    "indexed_title": "5 Interesting Facts About Tummy Tuck You Didn't Know: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/tummy-tuck"
+  },
+  {
+   "legacy_path": "/blog/why-a-tummy-tuck-is-still-the-best-choice-for-that-unwanted-belly-fat",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/why-a-tummy-tuck-is-still-the-best-choice-for-that-unwanted-belly-fat",
+   "confidence": "strong",
+   "basis": "Tummy tuck blog post consolidates to the brand host's tummy tuck procedure page.",
+   "evidence": {
+    "indexed_title": "Why a Tummy Tuck is Still the Best Choice for That Unwanted Belly Fat: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/tummy-tuck"
+  },
+  {
+   "legacy_path": "/blog/get-your-pre-baby-body-back-with-a-mommy-makeover",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/get-your-pre-baby-body-back-with-a-mommy-makeover",
+   "confidence": "strong",
+   "basis": "Mommy makeover blog post consolidates to the brand host's mommy makeover procedure page.",
+   "evidence": {
+    "indexed_title": "Get Your Pre-Baby Body Back with a Mommy Makeover: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/mommy-makeover"
+  },
+  {
+   "legacy_path": "/testimonials",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/testimonials",
+   "confidence": "exact",
+   "basis": "Testimonials page exists on the brand host at the identical path.",
+   "evidence": {
+    "indexed_title": "Testimonials & Reviews - Oklahoma City, OK: Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/testimonials"
+  },
+  {
+   "legacy_path": "/contents/nonsurgical/botox",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/nonsurgical/botox",
+   "confidence": "weak",
+   "basis": "Botox injectable page has no nonsurgical counterpart on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Botox - Oklahoma City, OK - Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/botox",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/nonsurgical/plasma-pen",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/nonsurgical/plasma-pen",
+   "confidence": "weak",
+   "basis": "Plasma Pen skin treatment has no nonsurgical counterpart on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Plasma Pen - Oklahoma City, OK: Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/plasma-pen",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/botox-why-its-still-the-gold-standard-in-wrinkle-reduction",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/botox-why-its-still-the-gold-standard-in-wrinkle-reduction",
+   "confidence": "weak",
+   "basis": "Botox blog post; the brand host has no injectables page to receive it, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Botox\u00ae: Why It's Still the Gold Standard in Wrinkle Reduction: Cosmetic Surgery Center: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/botox",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/nonsurgical/co2-laser",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/nonsurgical/co2-laser",
+   "confidence": "weak",
+   "basis": "CO2 laser resurfacing treatment has no counterpart on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "CO2 Laser - Oklahoma City, OK: Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/co2-laser",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/services/hormone-treatments",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/services/hormone-treatments",
+   "confidence": "weak",
+   "basis": "Hormone therapy service line has no counterpart anywhere on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Hormone Treatments Specialist - Oklahoma City, OK: Oklahoma Surgical Arts: Cosmetic Surgeon",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/hormone-treatments",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/incorporating-botox-and-xeomin-into-your-regular-beauty-routine",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/incorporating-botox-and-xeomin-into-your-regular-beauty-routine",
+   "confidence": "weak",
+   "basis": "Botox/Xeomin blog post; no injectables page exists on the brand host, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Incorporating Botox\u00ae and Xeomin\u00ae into Your Regular Beauty Routine: Cosmetic Surgery Center: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/botox",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/about",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/about",
+   "confidence": "weak",
+   "basis": "Practice about page has no confirmed counterpart; the homepage / introduces the practice and is the fallback.",
+   "evidence": {
+    "indexed_title": "About - Cosmetic Surgery Center: Cosmetic Surgeons Oklahoma City, OK",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/about",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/plumper-lips-with-dermal-fillers-all-your-questions-answered",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/plumper-lips-with-dermal-fillers-all-your-questions-answered",
+   "confidence": "weak",
+   "basis": "Dermal filler blog post; the brand host has no filler or injectable pages, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Plumper Lips With Dermal Fillers: All Your Questions Answered : Cosmetic Surgery Center: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/dermal-fillers",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/5-ways-dermal-fillers-can-help-you-look-younger",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/5-ways-dermal-fillers-can-help-you-look-younger",
+   "confidence": "weak",
+   "basis": "Dermal filler blog post; no filler page exists on the brand host, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "5 Ways Dermal Fillers Can Help You Look Younger: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/dermal-fillers",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/nonsurgical/fat-transfer-to-face-2",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/nonsurgical/fat-transfer-to-face-2",
+   "confidence": "weak",
+   "basis": "Facial fat transfer page has no facial-rejuvenation counterpart on the brand host (the confirmed fat-transfer page, /brazilian-butt-lift, is a different body area); fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Fat Transfer To Face - Oklahoma City, OK: Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/fat-transfer-to-face",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/how-to-choose-between-laser-treatments-fillers-and-chemical-peels",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/how-to-choose-between-laser-treatments-fillers-and-chemical-peels",
+   "confidence": "weak",
+   "basis": "Blog comparing nonsurgical skin treatments; no nonsurgical or skin-rejuvenation page exists on the brand host, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "How to Choose Between Laser Treatments, Fillers, and Chemical Peels: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/skin-rejuvenation",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/getting-your-first-cosmetic-injectable-treatment-heres-what-to-expect",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/getting-your-first-cosmetic-injectable-treatment-heres-what-to-expect",
+   "confidence": "weak",
+   "basis": "General injectables blog post; the brand host has no injectable pages, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Getting Your First Cosmetic Injectable Treatment? Here's What to Expect: Cosmetic Surgery Center: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/injectables",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/how-can-men-benefit-from-hormone-therapy",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/how-can-men-benefit-from-hormone-therapy",
+   "confidence": "weak",
+   "basis": "Hormone therapy blog post; no hormone content exists on the brand host, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "How Can Men Benefit From Hormone Therapy?: Cosmetic Surgery Center: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/hormone-treatments",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/nonsurgical/renuvion",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/nonsurgical/renuvion",
+   "confidence": "weak",
+   "basis": "Renuvion treatment page has no counterpart on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Renuvion - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/renuvion",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/resources/specials",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/resources/specials",
+   "confidence": "weak",
+   "basis": "Promotions/specials page has no counterpart on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Specials - Oklahoma City, OK: Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/specials",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/gallery/chemical-peel",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/gallery/chemical-peel",
+   "confidence": "weak",
+   "basis": "Chemical peel gallery; no peel or nonsurgical page exists on the brand host, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Chemical Peel Before & After - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/chemical-peels",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/3-for-me-your-total-skin-rejuvenation-solution",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/3-for-me-your-total-skin-rejuvenation-solution",
+   "confidence": "weak",
+   "basis": "Skin rejuvenation (3-For-Me laser bundle) blog post; no skin-rejuvenation page exists on the brand host, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "3 For Me: Your Total Skin Rejuvenation Solution: Cosmetic Surgery Center: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/skin-rejuvenation",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/refresh-the-skin-youre-in-with-laser-resurfacing",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/refresh-the-skin-youre-in-with-laser-resurfacing",
+   "confidence": "weak",
+   "basis": "Laser skin resurfacing blog post best served by a CO2 laser resurfacing page, which does not exist on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Refresh the Skin You're In With Laser Resurfacing: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/co2-laser",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/heres-what-happens-to-your-body-when-your-hormones-are-imbalanced",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/heres-what-happens-to-your-body-when-your-hormones-are-imbalanced",
+   "confidence": "weak",
+   "basis": "Hormone imbalance blog post; no hormone content exists on the brand host, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Here's What Happens to Your Body When Your Hormones Are Imbalanced: Cosmetic Surgery Center: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/hormone-treatments",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/4-menopause-symptoms-that-bioidentical-hormones-can-tackle",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/4-menopause-symptoms-that-bioidentical-hormones-can-tackle",
+   "confidence": "weak",
+   "basis": "Bioidentical hormone blog post; no hormone content exists on the brand host, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "4 Menopause Symptoms That Bioidentical Hormones Can Tackle: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/hormone-treatments",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/hormone-replacement-therapy-your-escape-from-uncomfortable-menopause-symptoms",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/hormone-replacement-therapy-your-escape-from-uncomfortable-menopause-symptoms",
+   "confidence": "weak",
+   "basis": "HRT blog post; no hormone content exists on the brand host, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Hormone Replacement Therapy: Your Escape from Uncomfortable Menopause Symptoms: Cosmetic Surgery Center: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/hormone-treatments",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/bothered-by-hot-flashes-consider-hormone-replacement-therapy",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/bothered-by-hot-flashes-consider-hormone-replacement-therapy",
+   "confidence": "weak",
+   "basis": "HRT blog post; no hormone content exists on the brand host, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Bothered by Hot Flashes? Consider Hormone Replacement Therapy: Cosmetic Surgery Center: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/hormone-treatments",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/everything-you-need-to-know-about-a-brazilian-butt-lift",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/everything-you-need-to-know-about-a-brazilian-butt-lift",
+   "confidence": "strong",
+   "basis": "Brazilian butt lift blog post consolidates to the brand host's Brazilian butt lift procedure page.",
+   "evidence": {
+    "indexed_title": "Everything You Need to Know About a Brazilian Butt Lift: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/brazilian-butt-lift"
+  },
+  {
+   "legacy_path": "/testimonials/3",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/testimonials/3",
+   "confidence": "exact",
+   "basis": "Paginated testimonials page consolidates to the brand host's single testimonials page, which exists.",
+   "evidence": {
+    "indexed_title": "Testimonials & Reviews - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/testimonials"
+  },
+  {
+   "legacy_path": "/contactus",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contactus",
+   "confidence": "exact",
+   "basis": "Contact page exists on the brand host at /contact-us, the same page function.",
+   "evidence": {
+    "indexed_title": "Contact Us - Oklahoma Surgical Arts: Cosmetic Surgeons Oklahoma City, OK",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/contact-us"
+  },
+  {
+   "legacy_path": "/contents/nonsurgical/juvaderm",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/nonsurgical/juvaderm",
+   "confidence": "weak",
+   "basis": "Juvederm dermal filler page has no injectable counterpart on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Juvaderm - Oklahoma City, OK: Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/juvederm",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/are-you-suffering-from-low-t-5-signs-to-look-for",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/are-you-suffering-from-low-t-5-signs-to-look-for",
+   "confidence": "weak",
+   "basis": "Low testosterone blog post belongs with hormone treatments, which have no page on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Are You Suffering From Low T? 5 Signs to Look For: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/hormone-treatments",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/saline-or-silicone-which-breast-implant-is-best-for-you",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/saline-or-silicone-which-breast-implant-is-best-for-you",
+   "confidence": "strong",
+   "basis": "Breast implant comparison blog post consolidates to the brand host's breast augmentation procedure page.",
+   "evidence": {
+    "indexed_title": "Saline or Silicone \u2014 Which Breast Implant Is Best for You?: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/breast-augmentation-1"
+  },
+  {
+   "legacy_path": "/blog/beyond-the-peel-laser-skin-resurfacing-takes-your-skin-to-the-next-level",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/beyond-the-peel-laser-skin-resurfacing-takes-your-skin-to-the-next-level",
+   "confidence": "weak",
+   "basis": "Laser skin resurfacing blog post best served by a CO2 laser page, which does not exist on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Beyond the Peel: Laser Skin Resurfacing Takes Your Skin to the Next Level: Cosmetic Surgery Center: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/co2-laser",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/testimonials/5",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/testimonials/5",
+   "confidence": "exact",
+   "basis": "Paginated testimonials page consolidates to the brand host's single testimonials page, which exists.",
+   "evidence": {
+    "indexed_title": "Testimonials & Reviews - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/testimonials"
+  },
+  {
+   "legacy_path": "/provider",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/provider",
+   "confidence": "category",
+   "basis": "Providers index has no directory page on the brand host, which has only individual doctor pages; the legacy site's sole indexed provider is Trent Fogleman, so /dr-trent-fogleman is the fallback.",
+   "evidence": {
+    "indexed_title": "Providers - Cosmetic Surgery Center: Cosmetic Surgeons Oklahoma City, OK",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/providers",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/provider/trent-fogleman-md-jd-abog-abcs-abfcs",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/provider/trent-fogleman-md-jd-abog-abcs-abfcs",
+   "confidence": "exact",
+   "basis": "Dr. Trent Fogleman's bio page exists on the brand host for the same physician.",
+   "evidence": {
+    "indexed_title": "Trent Fogleman, MD, JD, ABOG, ABCS, ABFCS: Cosmetic Surgeon Oklahoma City, OK",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/dr-trent-fogleman"
+  },
+  {
+   "legacy_path": "/blog/eyelid-surgery-a-minor-procedure-that-delivers-major-results",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/eyelid-surgery-a-minor-procedure-that-delivers-major-results",
+   "confidence": "strong",
+   "basis": "Eyelid surgery blog post consolidates to the brand host's blepharoplasty procedure page, the same procedure.",
+   "evidence": {
+    "indexed_title": "Eyelid Surgery: a Minor Procedure That Delivers Major Results : Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/blepharoplasty"
+  },
+  {
+   "legacy_path": "/blog/turn-back-the-clock-on-aging-eyes-with-blepharoplasty",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/turn-back-the-clock-on-aging-eyes-with-blepharoplasty",
+   "confidence": "strong",
+   "basis": "Blepharoplasty blog post consolidates to the brand host's blepharoplasty procedure page.",
+   "evidence": {
+    "indexed_title": "Turn Back the Clock on Aging Eyes with Blepharoplasty: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/blepharoplasty"
+  },
+  {
+   "legacy_path": "/contents/surgical-procedures-2/body-lift",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/surgical-procedures-2/body-lift",
+   "confidence": "category",
+   "basis": "Body lift/thigh lift has no page on the brand host; the nearest confirmed body-contouring procedure page, /tummy-tuck, is the fallback.",
+   "evidence": {
+    "indexed_title": "Body Lift / Thigh Lift - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/body-lift",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/resources/gallery/face-lift",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/resources/gallery/face-lift",
+   "confidence": "weak",
+   "basis": "Duplicate facelift gallery URL; no facelift page exists on the brand host, so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Facelift - Oklahoma City, OK - Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/facelift",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/resources/gallery/brazilian-butt-lift1",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/resources/gallery/brazilian-butt-lift1",
+   "confidence": "strong",
+   "basis": "Brazilian butt lift gallery consolidates to the brand host's Brazilian butt lift procedure page.",
+   "evidence": {
+    "indexed_title": "Brazilian Butt Lift Procedure - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/brazilian-butt-lift"
+  },
+  {
+   "legacy_path": "/contents/gallery/back-lift-procedure",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/gallery/back-lift-procedure",
+   "confidence": "category",
+   "basis": "Back lift (trunk excisional body contouring) has no page on the brand host; the nearest confirmed trunk-contouring page, /tummy-tuck, is the fallback.",
+   "evidence": {
+    "indexed_title": "Back Lift Procedure - Oklahoma City, OK: Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/back-lift",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/surgical-procedures-2/blepharoplasty",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/surgical-procedures-2/blepharoplasty",
+   "confidence": "exact",
+   "basis": "Blepharoplasty procedure page exists on the brand host for the same procedure.",
+   "evidence": {
+    "indexed_title": "Blepharoplasty - Oklahoma City, OK - Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/blepharoplasty"
+  },
+  {
+   "legacy_path": "/contents/resources/gallery/vertical-mastopexy",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/resources/gallery/vertical-mastopexy",
+   "confidence": "category",
+   "basis": "Duplicate breast lift (vertical mastopexy) gallery URL; no breast-lift page exists on the brand host, and /breast-reduction (which includes a mastopexy component) is the fallback.",
+   "evidence": {
+    "indexed_title": "Vertical Mastopexy (Breast lift) - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/breast-reduction",
+   "create_recommendation": "/breast-lift",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback /breast-reduction until it exists"
+  },
+  {
+   "legacy_path": "/services/labiaplasty",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/services/labiaplasty",
+   "confidence": "weak",
+   "basis": "Labiaplasty is a distinct intimate-surgery procedure with no confirmed page or related category on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Labiaplasty - Oklahoma City, OK: Oklahoma Surgical Arts: Cosmetic Surgeon",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/labiaplasty",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/services/sexual-enhancement",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/services/sexual-enhancement",
+   "confidence": "weak",
+   "basis": "Sexual enhancement/wellness service has no counterpart anywhere on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Sexual Enhancement - Oklahoma City, OK: Oklahoma Surgical Arts: Cosmetic Surgeon",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/sexual-enhancement",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/contents/gallery/fat-transfer-to-face",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/gallery/fat-transfer-to-face",
+   "confidence": "weak",
+   "basis": "Facial fat transfer gallery; no facial fat transfer page exists on the brand host (BBL is a different body area), so fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Fat Transfer to Face - Oklahoma City, OK: Cosmetic Surgery Center",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/fat-transfer-to-face",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/get-your-body-back-after-baby-with-a-mommy-makeover",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/get-your-body-back-after-baby-with-a-mommy-makeover",
+   "confidence": "strong",
+   "basis": "Mommy makeover blog post consolidates to the brand host's mommy makeover procedure page.",
+   "evidence": {
+    "indexed_title": "Get Your Body Back After Baby with a Mommy Makeover: Cosmetic Surgery Center: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/mommy-makeover"
+  },
+  {
+   "legacy_path": "/blog/when-is-the-right-time-for-a-mommy-makeover",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/when-is-the-right-time-for-a-mommy-makeover",
+   "confidence": "strong",
+   "basis": "Mommy makeover blog post consolidates to the brand host's mommy makeover procedure page.",
+   "evidence": {
+    "indexed_title": "When Is the Right Time for a Mommy Makeover?: Cosmetic Surgery Center: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/mommy-makeover"
+  },
+  {
+   "legacy_path": "/contents/surgical-procedures-2/gynecomastia-2",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/surgical-procedures-2/gynecomastia-2",
+   "confidence": "category",
+   "basis": "Gynecomastia surgery is male breast reduction and has no dedicated page on the brand host; the confirmed /breast-reduction page is the topically nearest fallback.",
+   "evidence": {
+    "indexed_title": "Gynecomastia - Oklahoma City, OK: Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/gynecomastia",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/services/male-gynecomastia",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/services/male-gynecomastia",
+   "confidence": "category",
+   "basis": "Duplicate gynecomastia service URL; no gynecomastia page exists on the brand host, so /breast-reduction (male breast reduction's parent topic) is the fallback.",
+   "evidence": {
+    "indexed_title": "Male Gynecomastia - Oklahoma City, OK: Oklahoma Surgical Arts: Cosmetic Surgeon",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/gynecomastia",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/saggy-breasts-got-you-down-a-breast-lift-can-perk-you-back-up",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/saggy-breasts-got-you-down-a-breast-lift-can-perk-you-back-up",
+   "confidence": "category",
+   "basis": "Breast lift blog post; no breast-lift page exists on the brand host, and /breast-reduction (which corrects ptosis via a mastopexy component) is the fallback.",
+   "evidence": {
+    "indexed_title": "Saggy Breasts Got You Down? A Breast Lift Can Perk You Back Up: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/breast-reduction",
+   "create_recommendation": "/breast-lift",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback /breast-reduction until it exists"
+  },
+  {
+   "legacy_path": "/blog/am-i-too-old-for-a-breast-lift",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/am-i-too-old-for-a-breast-lift",
+   "confidence": "category",
+   "basis": "Breast lift blog post; no breast-lift page exists on the brand host, and /breast-reduction is the topically nearest confirmed fallback.",
+   "evidence": {
+    "indexed_title": "Am I Too Old for a Breast Lift?: Cosmetic Surgery Center: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/breast-reduction",
+   "create_recommendation": "/breast-lift",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback /breast-reduction until it exists"
+  },
+  {
+   "legacy_path": "/blog/alleviate-your-chronic-back-pain-with-a-breast-reduction",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/alleviate-your-chronic-back-pain-with-a-breast-reduction",
+   "confidence": "strong",
+   "basis": "Breast reduction blog post consolidates to the brand host's breast reduction procedure page.",
+   "evidence": {
+    "indexed_title": "Alleviate Your Chronic Back Pain with a Breast Reduction: Cosmetic Surgery Center: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/breast-reduction"
+  },
+  {
+   "legacy_path": "/blog/5-signs-you-may-want-to-consider-breast-reduction",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/5-signs-you-may-want-to-consider-breast-reduction",
+   "confidence": "strong",
+   "basis": "Breast reduction blog post consolidates to the brand host's breast reduction procedure page.",
+   "evidence": {
+    "indexed_title": "5 Signs You May Want to Consider Breast Reduction: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/breast-reduction"
+  },
+  {
+   "legacy_path": "/blog/five-reasons-to-consider-a-breast-reduction",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/five-reasons-to-consider-a-breast-reduction",
+   "confidence": "strong",
+   "basis": "Breast reduction blog post consolidates to the brand host's breast reduction procedure page.",
+   "evidence": {
+    "indexed_title": "Five Reasons to Consider a Breast Reduction: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/breast-reduction"
+  },
+  {
+   "legacy_path": "/contents/nonsurgical/juvaderm/ultra-plus-xc",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/contents/nonsurgical/juvaderm/ultra-plus-xc",
+   "confidence": "weak",
+   "basis": "Juvederm Ultra Plus XC product variant consolidates under a Juvederm page, which does not exist on the brand host; fallback is the homepage /.",
+   "evidence": {
+    "indexed_title": "Ultra Plus XC - Oklahoma City, OK: Oklahoma Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/juvederm",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  },
+  {
+   "legacy_path": "/blog/summer-bodies-are-made-in-the-spring-start-sculpsure-treatment-now",
+   "legacy_url": "https://www.okccosmeticsurgeon.com/blog/summer-bodies-are-made-in-the-spring-start-sculpsure-treatment-now",
+   "confidence": "category",
+   "basis": "SculpSure is nonsurgical fat reduction with no page on the brand host; the confirmed /liposuction page addresses the same fat-reduction goal and is the fallback.",
+   "evidence": {
+    "indexed_title": "Summer Bodies Are Made in the Spring: Start SculpSure Treatment Now: Oklahoma Surgical Arts: Cosmetic Surgeons",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "review": {
+    "relevance_verifier": "ok",
+    "mechanical_verifier": "ok"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   },
+   "target_url": "https://oklahomasurgicalarts.com/",
+   "create_recommendation": "/sculpsure",
+   "create_note": "recommended page for the OSA tenant-2 scaffold; the shipped 301 uses the confirmed fallback / until it exists"
+  }
+ ],
+ "tsa_rules": [
+  {
+   "legacy_path": "/before-after-photos/body/tummy-tuck/tulsa-ok/70307",
+   "legacy_url": "https://tulsasurgicalarts.com/before-after-photos/body/tummy-tuck/tulsa-ok/70307",
+   "target_url": "https://tulsasurgicalarts.com/tummy-tuck",
+   "confidence": "category",
+   "condition": "apply-if-dead",
+   "note": "procedure page until a body gallery exists",
+   "evidence": {
+    "indexed_title": "Tummy Tuck Body Contouring in Tulsa, OK",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/before-after-photos/breast/breast-augmentation",
+   "legacy_url": "https://tulsasurgicalarts.com/before-after-photos/breast/breast-augmentation",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "no breast gallery or confirmed flat breast-augmentation page in the 08-25 index sweep; create /gallery/Breast-Surgery",
+   "evidence": {
+    "indexed_title": "Breast Augmentation Before & After Photos | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/before-after-photos/face/facelift/tulsa-ok/70212",
+   "legacy_url": "https://tulsasurgicalarts.com/before-after-photos/face/facelift/tulsa-ok/70212",
+   "target_url": "https://tulsasurgicalarts.com/gallery/Facial-Surgery",
+   "confidence": "category",
+   "condition": "apply-if-dead",
+   "note": "gallery migration policy: /gallery/{caseId} once cases exist (atlas.gallery/v1)",
+   "evidence": {
+    "indexed_title": "Face and Neck Lift by Tulsa Cosmetic Surgeon",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/before-after-photos/face/facelift/tulsa-ok/70213",
+   "legacy_url": "https://tulsasurgicalarts.com/before-after-photos/face/facelift/tulsa-ok/70213",
+   "target_url": "https://tulsasurgicalarts.com/gallery/Facial-Surgery",
+   "confidence": "category",
+   "condition": "apply-if-dead",
+   "note": "gallery migration policy: /gallery/{caseId} once cases exist (atlas.gallery/v1)",
+   "evidence": {
+    "indexed_title": "Face and Neck Lift in Oklahoma",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/before-after-photos/face/rhinoplasty/tulsa-ok/100088",
+   "legacy_url": "https://tulsasurgicalarts.com/before-after-photos/face/rhinoplasty/tulsa-ok/100088",
+   "target_url": "https://tulsasurgicalarts.com/gallery/Facial-Surgery",
+   "confidence": "category",
+   "condition": "apply-if-dead",
+   "note": "gallery migration policy: /gallery/{caseId} once cases exist (atlas.gallery/v1)",
+   "evidence": {
+    "indexed_title": "Rhinoplasty/Nose Job | Case 100088",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/before-after-photos/face/rhinoplasty/tulsa-ok/70257",
+   "legacy_url": "https://tulsasurgicalarts.com/before-after-photos/face/rhinoplasty/tulsa-ok/70257",
+   "target_url": "https://tulsasurgicalarts.com/gallery/Facial-Surgery",
+   "confidence": "category",
+   "condition": "apply-if-dead",
+   "note": "gallery migration policy: /gallery/{caseId} once cases exist (atlas.gallery/v1)",
+   "evidence": {
+    "indexed_title": "Rhinoplasty by Tulsa Cosmetic Surgeon",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/before-after-photos/face/rhinoplasty/tulsa-ok/70259",
+   "legacy_url": "https://tulsasurgicalarts.com/before-after-photos/face/rhinoplasty/tulsa-ok/70259",
+   "target_url": "https://tulsasurgicalarts.com/gallery/Facial-Surgery",
+   "confidence": "category",
+   "condition": "apply-if-dead",
+   "note": "gallery migration policy: /gallery/{caseId} once cases exist (atlas.gallery/v1)",
+   "evidence": {
+    "indexed_title": "Rhinoplasty in Oklahoma - Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/before-after-photos/face/rhinoplasty/tulsa-ok/73864",
+   "legacy_url": "https://tulsasurgicalarts.com/before-after-photos/face/rhinoplasty/tulsa-ok/73864",
+   "target_url": "https://tulsasurgicalarts.com/gallery/Facial-Surgery",
+   "confidence": "category",
+   "condition": "apply-if-dead",
+   "note": "gallery migration policy: /gallery/{caseId} once cases exist (atlas.gallery/v1)",
+   "evidence": {
+    "indexed_title": "Rhinoplasty Performed by Dr. Cuzalina at Tulsa Surgical Arts | Case 73864",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/before-after-photos/face/rhinoplasty/tulsa-ok/84591",
+   "legacy_url": "https://tulsasurgicalarts.com/before-after-photos/face/rhinoplasty/tulsa-ok/84591",
+   "target_url": "https://tulsasurgicalarts.com/gallery/Facial-Surgery",
+   "confidence": "category",
+   "condition": "apply-if-dead",
+   "note": "gallery migration policy: /gallery/{caseId} once cases exist (atlas.gallery/v1)",
+   "evidence": {
+    "indexed_title": "Rhinoplasty Surgery at Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "category",
+   "condition": "apply-if-dead",
+   "note": "index page of the legacy tree",
+   "evidence": {
+    "indexed_title": "Cosmetic Surgery Procedures in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/body",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/body",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "legacy category index",
+   "evidence": {
+    "indexed_title": "Body Procedures in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/body/body-lift-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/body/body-lift-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "no flat body-lift page confirmed; create /body-lift",
+   "evidence": {
+    "indexed_title": "Brazilian Butt Lift in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/body/brazilian-butt-lift-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/body/brazilian-butt-lift-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "no flat BBL page confirmed in sweep; create /brazilian-butt-lift",
+   "evidence": {
+    "indexed_title": "Brazilian Butt Lift in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/body/butt-lift-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/body/butt-lift-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "no flat BBL page confirmed in sweep; create /brazilian-butt-lift",
+   "evidence": {
+    "indexed_title": "Butt Lift in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/body/tummy-tuck-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/body/tummy-tuck-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/tummy-tuck",
+   "confidence": "exact",
+   "condition": "apply-if-dead",
+   "note": "legacy-tree page; 301 only if it no longer serves 200 (the relaunch may have kept it live)",
+   "evidence": {
+    "indexed_title": "Tummy Tuck in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/breast",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/breast",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "legacy category index",
+   "evidence": {
+    "indexed_title": "Breast Procedures in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/breast/breast-augmentation-lift-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/breast/breast-augmentation-lift-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "no flat breast-lift page confirmed; create /breast-lift",
+   "evidence": {
+    "indexed_title": "Breast Augmentation + Lift in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/breast/breast-augmentation-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/breast/breast-augmentation-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "no flat breast-augmentation page confirmed in sweep; create /breast-augmentation",
+   "evidence": {
+    "indexed_title": "Breast Augmentation in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/face/brow-lift-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/face/brow-lift-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/brow-lift",
+   "confidence": "exact",
+   "condition": "apply-if-dead",
+   "note": "legacy-tree page; 301 only if it no longer serves 200 (the relaunch may have kept it live)",
+   "evidence": {
+    "indexed_title": "Tulsa Surgical Arts & Bella Roma Medical Spa",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/face/cheek-augmentation-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/face/cheek-augmentation-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/facial-augmentation",
+   "confidence": "strong",
+   "condition": "apply-if-dead",
+   "note": "legacy-tree page; 301 only if it no longer serves 200 (the relaunch may have kept it live)",
+   "evidence": {
+    "indexed_title": "Cheek Augmentation in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/face/chin-augmentation-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/face/chin-augmentation-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/facial-augmentation",
+   "confidence": "strong",
+   "condition": "apply-if-dead",
+   "note": "legacy-tree page; 301 only if it no longer serves 200 (the relaunch may have kept it live)",
+   "evidence": {
+    "indexed_title": "Facial Implants in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/face/facelift-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/face/facelift-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "no flat facelift page confirmed in sweep; create /facelift",
+   "evidence": {
+    "indexed_title": "Facelift in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/face/temple-implants-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/face/temple-implants-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/facial-augmentation",
+   "confidence": "strong",
+   "condition": "apply-if-dead",
+   "note": "legacy-tree page; 301 only if it no longer serves 200 (the relaunch may have kept it live)",
+   "evidence": {
+    "indexed_title": "Facial Implants in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/injectables",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/injectables",
+   "target_url": "https://tulsasurgicalarts.com/injections",
+   "confidence": "exact",
+   "condition": "apply-if-dead",
+   "note": "legacy-tree page; 301 only if it no longer serves 200 (the relaunch may have kept it live)",
+   "evidence": {
+    "indexed_title": "Fillers & Injectables Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/injectables/botox-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/injectables/botox-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/injections",
+   "confidence": "strong",
+   "condition": "apply-if-dead",
+   "note": "legacy-tree page; 301 only if it no longer serves 200 (the relaunch may have kept it live)",
+   "evidence": {
+    "indexed_title": "Wrinkle Relaxers in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/injectables/juvederm-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/injectables/juvederm-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/injections",
+   "confidence": "strong",
+   "condition": "apply-if-dead",
+   "note": "legacy-tree page; 301 only if it no longer serves 200 (the relaunch may have kept it live)",
+   "evidence": {
+    "indexed_title": "Dermal Fillers & Wrinkle Relaxers in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/men",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/men",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "legacy category index; create /men",
+   "evidence": {
+    "indexed_title": "Men Procedures in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/skin/chemical-peel-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/skin/chemical-peel-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/medical-spa",
+   "confidence": "category",
+   "condition": "apply-if-dead",
+   "note": "legacy-tree page; 301 only if it no longer serves 200 (the relaunch may have kept it live)",
+   "evidence": {
+    "indexed_title": "Facials in Tulsa, OK | Tulsa Surgical Arts & Bella Roma Medical Spa",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/skin/dermasound-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/skin/dermasound-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/dermasound",
+   "confidence": "exact",
+   "condition": "apply-if-dead",
+   "note": "legacy-tree page; 301 only if it no longer serves 200 (the relaunch may have kept it live)",
+   "evidence": {
+    "indexed_title": "DermaSound\u2122 in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/spa-services/laser-hair-removal-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/spa-services/laser-hair-removal-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/laser-hair-removal",
+   "confidence": "exact",
+   "condition": "apply-if-dead",
+   "note": "legacy-tree page; 301 only if it no longer serves 200 (the relaunch may have kept it live)",
+   "evidence": {
+    "indexed_title": "Laser Resurfacing - IPL - Laser Hair Removal in Tulsa, OK | Tulsa Surgical Arts & Bella Roma Medical Spa",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/spa-services/massage-services-tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/spa-services/massage-services-tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/massage-therapy",
+   "confidence": "exact",
+   "condition": "apply-if-dead",
+   "note": "legacy-tree page; 301 only if it no longer serves 200 (the relaunch may have kept it live)",
+   "evidence": {
+    "indexed_title": "Massage Services in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/procedures/wellness",
+   "legacy_url": "https://tulsasurgicalarts.com/procedures/wellness",
+   "target_url": "https://tulsasurgicalarts.com/wellness",
+   "confidence": "exact",
+   "condition": "apply-if-dead",
+   "note": "legacy-tree page; 301 only if it no longer serves 200 (the relaunch may have kept it live)",
+   "evidence": {
+    "indexed_title": "Wellness Procedures in Tulsa, OK | Tulsa Surgical Arts",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/testimonials/body/brazilian-butt-lift",
+   "legacy_url": "https://tulsasurgicalarts.com/testimonials/body/brazilian-butt-lift",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "no flat testimonials index confirmed in the 08-25 sweep; create /testimonials",
+   "evidence": {
+    "indexed_title": "Reviews for Brazilian Butt Lift Procedures Near Tulsa, OK",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/testimonials/body/brazilian-butt-lift/tulsa-ok",
+   "legacy_url": "https://tulsasurgicalarts.com/testimonials/body/brazilian-butt-lift/tulsa-ok",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "no flat testimonials index confirmed in the 08-25 sweep; create /testimonials",
+   "evidence": {
+    "indexed_title": "Reviews for Brazilian Butt Lift Procedures in Tulsa, OK",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/testimonials/body/liposuction",
+   "legacy_url": "https://tulsasurgicalarts.com/testimonials/body/liposuction",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "no flat testimonials index confirmed in the 08-25 sweep; create /testimonials",
+   "evidence": {
+    "indexed_title": "Reviews for Liposuction Procedures Near Tulsa, OK",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/testimonials/cosmetic-surgeon/dr-angelo-cuzalina/body/brazilian-butt-lift",
+   "legacy_url": "https://tulsasurgicalarts.com/testimonials/cosmetic-surgeon/dr-angelo-cuzalina/body/brazilian-butt-lift",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "no flat testimonials index confirmed in the 08-25 sweep; create /testimonials",
+   "evidence": {
+    "indexed_title": "Reviews for Tulsa, OK Cosmetic Surgeon Dr. Angelo Cuzalina Brazilian Butt Lift Procedures",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/testimonials/cosmetic-surgeon/dr-angelo-cuzalina/body/tummy-tuck",
+   "legacy_url": "https://tulsasurgicalarts.com/testimonials/cosmetic-surgeon/dr-angelo-cuzalina/body/tummy-tuck",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "no flat testimonials index confirmed in the 08-25 sweep; create /testimonials",
+   "evidence": {
+    "indexed_title": "Reviews for Tulsa, OK Cosmetic Surgeon Dr. Angelo Cuzalina Tummy Tuck Procedures",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/testimonials/cosmetic-surgeon/dr-angelo-cuzalina/injectables",
+   "legacy_url": "https://tulsasurgicalarts.com/testimonials/cosmetic-surgeon/dr-angelo-cuzalina/injectables",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "no flat testimonials index confirmed in the 08-25 sweep; create /testimonials",
+   "evidence": {
+    "indexed_title": "Reviews for Tulsa, OK Cosmetic Surgeon Dr. Angelo Cuzalina Injectables Procedures",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  },
+  {
+   "legacy_path": "/testimonials/cosmetic-surgeon/dr-angelo-cuzalina/nonsurgical/lymphatic-massage",
+   "legacy_url": "https://tulsasurgicalarts.com/testimonials/cosmetic-surgeon/dr-angelo-cuzalina/nonsurgical/lymphatic-massage",
+   "target_url": "https://tulsasurgicalarts.com/",
+   "confidence": "weak",
+   "condition": "apply-if-dead",
+   "note": "no flat testimonials index confirmed in the 08-25 sweep; create /testimonials",
+   "evidence": {
+    "indexed_title": "Reviews for Tulsa, OK Cosmetic Surgeon Dr. Angelo Cuzalina Manual Lymphatic Massage Procedures",
+    "observed": "2026-08-25",
+    "source": "search-index observation (site:-scoped query; URL verbatim from index)"
+   },
+   "verify": {
+    "status": "PENDING-LIVE-FETCH"
+   }
+  }
+ ],
+ "tsa_inventory_note": "103 tulsasurgicalarts.com URLs observed indexed 2026-08-25: BOTH architectures are in the index at once - the flat tree plus /f/* and /blog/* (current) AND the legacy /procedures/*-tulsa-ok, /before-after-photos/*, /testimonials/* trees. tsa_rules covers every indexed legacy-tree URL; apply-if-dead - a page still serving 200 stays put.",
+ "brand_host_defects": [
+  "residual Parkway Medical content: /contact-us titles as \"Dr. J Dan Metcalf, Parkway Medical Breast Augmentation\" and /testimonials leads with Dr. Metcalf reviews - the consolidation TARGET carries the previous tenant's entity; purge/replace before or with the 301 cutover",
+  "duplicate surgeon pages indexed: /dr-cuzalina AND /dr-angelo-cuzalina - pick one, 301 the other, self-canonical the survivor",
+  "/breast-augmentation-1 slug (the -1 suffix suggests a CMS duplicate) - if renamed to /breast-augmentation, update this map and 301 the old slug"
+ ],
+ "counts": {
+  "osa_legacy_indexed": 89,
+  "osa_brand_indexed": 19,
+  "tsa_indexed": 103,
+  "osa_rules": 89,
+  "osa_rules_confirmed_target": 33,
+  "osa_rules_create_or_fallback": 56,
+  "tsa_repair_rules": 39
+ }
+}
