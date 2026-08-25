@@ -1,0 +1,48 @@
+{
+  "target": "cc_data",
+  "note": "Intelligence console (intel/index.html) registration + provenance annotations. NOTHING was re-measured today: the 2026-08-25 Semrush MCP refresh attempt was REFUSED (API units exhausted — projects and domain_overview probes both refused before any report ran), so every figure keeps its prior vintage: organic family/rank/SERP features 2026-08-23; Authority Score, backlinks, top-keyword positions, keyword_gap, competitors, keyword registries 2026-08-08; GBP readback, paid-footprint probe, robots fetch, PSI runs, DNS, GSC state, benchmarks 2026-08-07; CrUX field 2026-08-08. Added: intel.vintages (the per-figure capture registry the new console renders as date chips), intel.refresh_attempts (blocked pulls are logged, not hidden), and explicit provenance fields on live.gbp / live.crux / live.psi / live.robots / live.dns — measurement-class readings the flagship already asserts in prose (README: 'live-verified inputs (Semrush · CrUX field · Google Business Profile baseline) render as measurements'); no value changed, only its class made machine-readable.",
+  "ops": [
+    { "op": "set", "path": "live.gbp.provenance", "value": "measurement" },
+    { "op": "set", "path": "live.gbp.captured", "value": "2026-08-07" },
+    { "op": "set", "path": "live.crux.provenance", "value": "measurement" },
+    { "op": "set", "path": "live.crux.captured", "value": "2026-08-08" },
+    { "op": "set", "path": "live.psi.provenance", "value": "measurement" },
+    { "op": "set", "path": "live.psi.captured", "value": "2026-08-07" },
+    { "op": "set", "path": "live.robots.provenance", "value": "measurement" },
+    { "op": "set", "path": "live.robots.captured", "value": "2026-08-07" },
+    { "op": "set", "path": "live.dns.provenance", "value": "measurement" },
+    { "op": "set", "path": "live.dns.captured", "value": "2026-08-07" },
+    { "op": "set", "path": "intel", "value": {
+      "console": "intel/index.html",
+      "version": "1.0.0",
+      "built": "2026-08-25",
+      "vintages": {
+        "rank": "2026-08-23",
+        "organic_family": "2026-08-23",
+        "serp_features": "2026-08-23",
+        "authority_score": "2026-08-08",
+        "backlinks": "2026-08-08",
+        "top_keywords": "2026-08-08",
+        "keyword_gap": "2026-08-08",
+        "competitors": "2026-08-08",
+        "keyword_registries": "2026-08-08",
+        "paid_probe": "2026-08-07",
+        "benchmarks": "2026-08-07",
+        "gbp": "2026-08-07",
+        "crux": "2026-08-08",
+        "psi": "2026-08-07",
+        "robots": "2026-08-07",
+        "dns": "2026-08-07",
+        "gsc_state": "2026-08-07"
+      },
+      "refresh_attempts": [
+        {
+          "date": "2026-08-25",
+          "tool": "Semrush MCP (cloud session)",
+          "result": "REFUSED — insufficient API units (projects and domain_overview probes both refused before any report ran); no figure re-pulled, all vintages unchanged. Unit options: semrush.com/mcp-access"
+        }
+      ]
+    } },
+    { "op": "set", "path": "integrations.semrush.status", "value": "LIVE via Semrush MCP — organic family re-pulled 2026-08-23 (rank 314,575 · 3,500 kw · 5,311 traffic est · $15,814 value); AS 28 · 490 ref domains remain 2026-08-08 (backlinks units exhausted). 2026-08-25 refresh attempt REFUSED (API units exhausted before any report ran) — vintages unchanged. Direct-API PAT still NOT_ENTITLED (OPS-22); MCP is the live transport meanwhile" }
+  ]
+}
