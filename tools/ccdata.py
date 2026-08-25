@@ -57,6 +57,9 @@ LANDING = ROOT / "index.html"
 # the Authority console carries the same CC_DATA line as the flagship and is
 # patched in the same operation, so the three can never diverge
 AUTHORITY = ROOT / "authority" / "index.html"
+# the Intelligence console (Semrush-class research surface) carries the same
+# CC_DATA line and is patched in the same operation as well
+INTEL = ROOT / "intel" / "index.html"
 
 CC_RE = re.compile(r"^window\.CC_DATA = (.*);$", re.M)
 
@@ -120,7 +123,9 @@ def apply_patch(patch_path: Path, stamp: str | None) -> None:
         "patch": patch_path.name,
         "note": patch.get("note", ""),
     })
-    targets = CONSOLES + ([AUTHORITY] if AUTHORITY.exists() else [])
+    targets = (CONSOLES
+               + ([AUTHORITY] if AUTHORITY.exists() else [])
+               + ([INTEL] if INTEL.exists() else []))
     for c in targets:
         embed(c, base)
     print(f"patched {len(ops)} op(s) into {' + '.join(str(c.relative_to(ROOT)) for c in targets)}")
@@ -179,7 +184,7 @@ def check() -> int:
 
     # 4. zero-network law
     load_re = re.compile(r'<(?:link|script|img)[^>]+(?:href|src)="(https?://[^"]+)"', re.I)
-    for f in [*CONSOLES, GROUP, LANDING, AUTHORITY]:
+    for f in [*CONSOLES, GROUP, LANDING, AUTHORITY, *( [INTEL] if INTEL.exists() else [] )]:
         hits = [u for u in load_re.findall(_read(f))]
         if hits:
             _fail(msgs, f"{f.relative_to(ROOT)}: loads external resource(s) at view time: {hits[:3]}")
@@ -230,6 +235,34 @@ def check() -> int:
         _ok(msgs, f"authority console version {atv.group(1)} consistent")
     else:
         _fail(msgs, "authority console: version string not found in title and/or rail")
+
+    # 9-11. the Intelligence console, when present, lives under the same laws:
+    #    its CC_DATA line is byte-identical to the flagship's, its provenance
+    #    chips derive only from CC_DATA (marker + no hardcoded MEASURED chip),
+    #    and its version string is consistent between <title> and rail
+    if INTEL.exists():
+        intel = _read(INTEL)
+        im = CC_RE.search(intel)
+        if not im:
+            _fail(msgs, "intel console: no CC_DATA line — it must carry the source of record")
+        elif im.group(0) != fm.group(0):
+            _fail(msgs, "intel console: CC_DATA differs from the flagship — consoles have diverged; re-run ccdata.py patch")
+        else:
+            _ok(msgs, "intel CC_DATA line byte-identical to flagship")
+        if "PROVENANCE_CHIPS_FROM_CC_DATA" not in intel:
+            _fail(msgs, "intel console: PROV_CLASS provenance-derivation marker missing")
+        elif re.search(r"tag\s+t-meas", intel):
+            _fail(msgs, "intel console: hardcoded MEASURED chip found — chips must derive from CC_DATA provenance")
+        else:
+            _ok(msgs, "intel chips derive from CC_DATA provenance (no hardcoded MEASURED chip)")
+        itv = re.search(r"<title>[^<]*·\s*(v[\d.]+)</title>", intel)
+        isv = re.search(r"INTELLIGENCE CENTER\s*·\s*(v[\d.]+)", intel)
+        if itv and isv and itv.group(1) != isv.group(1):
+            _fail(msgs, f"intel console title says {itv.group(1)} but rail says {isv.group(1)}")
+        elif itv and isv:
+            _ok(msgs, f"intel console version {itv.group(1)} consistent")
+        else:
+            _fail(msgs, "intel console: version string not found in title and/or rail")
 
     print("\n".join(msgs))
     fails = sum(1 for m in msgs if m.startswith("FAIL"))

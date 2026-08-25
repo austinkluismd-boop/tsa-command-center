@@ -12,6 +12,18 @@ Public, fully-functional demonstration of the practice analytics console.
   is the read-only shell; editing, login, and Claude-on-Bedrock chat come
   from the operator-deployed private workspace (`authority/backend/`,
   runbook in `authority/README.md`).
+- **Intelligence console:** [`intel/`](https://austinkluismd-boop.github.io/tsa-command-center/intel/) —
+  the Semrush-class research surface: ten left-rail toolkits (Home · SEO ·
+  Local & GBP · Advertising · Content · Social · AI Visibility · Trends ·
+  Reports · Projects & Ops) with 34 sub-views — domain overview, organic
+  research, keyword magic, backlinks, positions, tech SEO, GBP profile +
+  map-rank geogrid + reviews + citations, paid audit and an interactive
+  campaign allocator, editorial queue, social tracker, AI share-of-voice
+  and crawler-access audit, competitor/keyword-gap trends, an export
+  center, the vintage board, and the AWS feed contract. Carries the same
+  CC_DATA line as the flagship (byte-identity CI-enforced), derives every
+  provenance chip from it at render time, and — like every console here —
+  makes zero network requests at view time.
 
 Both demos are the identical self-contained engine (one ~2 MB HTML file — vendored charts, embedded fonts, offline US basemap, **zero network requests at view time**). Seventeen sections (composite Engines view + Estate/Surgical/Injectable/Wellness scoping): Authority Index · Action Items · Signature Four · Paid Media · Patient Journey · Content Studio · Search · Competitive Intel · AI Visibility · Local & Reputation · Geo Intelligence · Site Experience · Engagement · Social & Audience · Interaction Maps · Methodology.
 
@@ -21,16 +33,17 @@ Data honesty: figures carry provenance chips — live-verified inputs (Semrush �
 
 The consoles' source of record is the `window.CC_DATA` object embedded in
 `desktop.html`/`mobile.html` (and carried byte-identically by
-`authority/index.html`). **Never hand-edit figures** — in those files,
-`group/index.html`, or `authority/index.html`. Instead:
+`authority/index.html` and `intel/index.html`). **Never hand-edit
+figures** — in those files, `group/index.html`, `authority/index.html`,
+or `intel/index.html`. Instead:
 
 1. Write a patch file under `tools/patches/` (see
    `2026-08-23-semrush-refresh.json` for the format — set/append ops on
    dotted paths, plus a note recording what was and was not re-measured).
 2. Apply it: `python3 tools/ccdata.py patch tools/patches/<file>.json` —
-   this patches desktop, mobile and the authority console in one operation
-   (they can never diverge) and appends the patch to
-   `CC_DATA.meta.data_updates`.
+   this patches desktop, mobile, the authority console and the
+   intelligence console in one operation (they can never diverge) and
+   appends the patch to `CC_DATA.meta.data_updates`.
 3. Verify: `python3 tools/ccdata.py check` — byte-parity, landing-chip
    parity, the provenance/label law (a demo composite must never wear a
    MEASURED chip), the zero-network law, and version parity.
