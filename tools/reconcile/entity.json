@@ -1,0 +1,83 @@
+{
+  "generated": "2026-08-25",
+  "doctrine": "One canonical record; every surface reconciles TO it. A surface that cannot match it yet carries its own dated observation and an action — never a silently mixed vintage.",
+  "canonical": {
+    "person": {
+      "name": "Angelo Cuzalina, MD, DDS",
+      "npi": "1376625830",
+      "ok_license": "20503",
+      "credentials_of_record": [
+        "AACS president 2011-2012",
+        "ABCS president 2013",
+        "AJCS section editor 2024",
+        "SRC master surgeon (dual, 2021)",
+        "AACS-accredited fellowship director (1 of 16)",
+        "27 enumerated publications; AJCS 2024 BBL study first author, cited in ABCS 2024 national safety statement"
+      ],
+      "known_defects": [
+        "NPPES record stale since 2007: listed as 'Lawrence Cuzalina' with dental taxonomy — OPS-2 adds other-name 'Angelo Cuzalina' + MD taxonomy; NPPES feeds every downstream medical directory, so this is upstream of the whole ledger",
+        "No Google knowledge panel; own-name SERP position 9-10 (ai_lens readback 2026-08-12)",
+        "Elsevier/Amazon 2012 guest-edited volume misspells 'Angela Cuzalina' (OPS-11)"
+      ],
+      "sameAs_plan": "JSON-LD @graph on both practice sites with alternateName ('Lawrence Angelo Cuzalina') + 12-node sameAs (NPPES, cosmeticsurgery.org, americanboardcosmeticsurgery.org, surgicalreview.org, Healthgrades, RealSelf, RateMDs, WebMD, Vitals, Wikidata QID once OPS-16 lands, publisher author pages, YouTube) — site-side work, ships via practice-stack, tracked here for completeness"
+    },
+    "organizations": {
+      "tsa": {
+        "name": "Tulsa Surgical Arts",
+        "site": "https://tulsasurgicalarts.com/",
+        "phone": {
+          "status": "UNRESOLVED — OPS-23 (P0, owner Austin + Dr. C)",
+          "candidates": [
+            {"number": "(918) 392-7900", "seen_on": "GBP listing (owner dashboard readback 2026-08-07)", "note": "likely Yext tracked number"},
+            {"number": "918-392-0880", "seen_on": "site NAP"}
+          ],
+          "rule": "ONE canonical number for GBP + site + every citation; DNI pools exclude it; Yext UTM/tracking remnants killed deliberately. Until decided, no citation-building touches a phone field."
+        },
+        "gbp": {
+          "observed": "VERIFIED listing, store code 14964, 4.9 rating / 523 reviews / 9,011 interactions, categories 'Cosmetic surgeon / Medical spa'",
+          "observed_date": "2026-08-07",
+          "api": "quota 0 until GBP access form approved (OPS-7)"
+        }
+      },
+      "osa": {
+        "name": "Oklahoma Surgical Arts",
+        "site": "https://www.oklahomasurgicalarts.com/",
+        "legacy_domain": "okccosmeticsurgeon.com — 301-consolidates per tools/reconcile/redirects.json; citations that reference the legacy domain get updated to the brand host as they are worked",
+        "address": "12400 Saint Andrew's Dr, Oklahoma City, OK 73120",
+        "phone": "405-751-0042",
+        "hours": "Mon-Fri 7:30a-4:30p",
+        "tagline": "Oklahoma's Premier Breast Augmentation Surgical Center",
+        "providers": ["Fogleman", "Cuzalina", "Nelson", "Eid", "Champion", "Gutierrez", "Tolomeo"],
+        "gbp": {
+          "observed": "NEW profile live 2026-08-12; 1,130 lifetime views; profile photo is a street view of the parking lot; owner confirmed Dr. Angelo Cuzalina",
+          "observed_date": "2026-08-12",
+          "action": "full build-out to flagship schema — primary + secondary categories, every service, hours, attributes, booking URL, professional imagery"
+        },
+        "facebook": "facebook.com/p/Oklahoma-Surgical-Arts-61578040036407 (new page, 2026-08-12)"
+      },
+      "bella_roma": {
+        "name": "Bella Roma Medical Spa",
+        "location": "inside TSA, Tulsa, OK",
+        "google": "5.0 rating / 25 reviews (census 2026-08-04); 693-review conflict noted in group console",
+        "domain": "UNREGISTERED — OPS-14 registers bellaromamedspa.com (+ tsawellness.com) before any citation building for the med-spa arm"
+      }
+    }
+  },
+  "surfaces": [
+    {"surface": "GBP — TSA", "observed": "verified, 4.9/523, but listing phone (918) 392-7900 vs site NAP 918-392-0880", "observed_date": "2026-08-07", "action": "resolve OPS-23 phone decision, then align listing + site + citations to the one number; enable edit-diff monitoring + practitioner listings + suspension dossier (OPS-21)", "ops": ["OPS-23", "OPS-21", "OPS-7"], "status": "BLOCKED-ON-DECISION"},
+    {"surface": "GBP — OSA", "observed": "new listing (2026-08-12), skeleton state, parking-lot photo, 1,130 lifetime views", "observed_date": "2026-08-12", "action": "build out to flagship schema; NAP must read exactly: Oklahoma Surgical Arts · 12400 Saint Andrew's Dr, Oklahoma City, OK 73120 · 405-751-0042", "ops": [], "status": "OPEN"},
+    {"surface": "Bing Places + Bing Webmaster", "observed": "NOT CONNECTED (integrations.bing); no Bing Webmaster verification for any estate host", "observed_date": "2026-08-25", "action": "claim Bing Places for TSA + OSA (import from GBP once canonical), verify both hosts in Bing Webmaster Tools via the same DNS TXT path as GSC, submit sitemaps (OPS-3); Bing feeds Copilot + partly ChatGPT browsing — it is an AI-SOV surface, not an afterthought", "ops": ["OPS-3", "OPS-27"], "status": "OPEN"},
+    {"surface": "Google Search Console", "observed": "required TXT observed serving in DNS 2026-08-07T22:38Z; Verify not yet clicked; foreign BFXT token present", "observed_date": "2026-08-07", "action": "click Verify, add SA user, enable Generative-AI report (no backfill — every unverified day is lost data), audit foreign token holder (OPS-24); then pull indexed-URL export for the redirects.json diff", "ops": ["OPS-18", "OPS-24", "OPS-12"], "status": "OPEN"},
+    {"surface": "Apple Business Connect", "observed": "unclaimed (TSA + Bella Roma)", "observed_date": "2026-08-12", "action": "claim place cards; decide Maps Ads posture after baseline (LOCAL-07)", "ops": ["OPS-19"], "status": "OPEN"},
+    {"surface": "NPPES", "observed": "NPI 1376625830 stale since 2007 — 'Lawrence Cuzalina', dental taxonomy", "observed_date": "2026-08-04", "action": "add other-name 'Angelo Cuzalina' + MD taxonomy", "ops": ["OPS-2"], "status": "OPEN"},
+    {"surface": "Healthgrades", "observed": "listed as 'Dr. Lawrence Cuzalina, DDS' — 4.8/170 orphaned under the wrong name; most-cited domain in the AI-SOV baseline (260 answers)", "observed_date": "2026-08-04", "action": "correct listing name to practice + Angelo Cuzalina, MD, DDS; align NAP to canonical", "ops": ["OPS-8"], "status": "OPEN"},
+    {"surface": "RealSelf", "observed": "3.4/16, 70% worth-it, UNCLAIMED — weakest surface; realself.com is #9 in the AI-citation leaderboard (211 answers)", "observed_date": "2026-08-04", "action": "claim + complete profile; no solicitation (AUTH-04)", "ops": ["OPS-9"], "status": "OPEN"},
+    {"surface": "Yelp", "observed": "3 listings per dossier; 23 reviews visible; yelp.com is #3 in the AI-citation leaderboard (245 answers) and licensed AI supply", "observed_date": "2026-08-04", "action": "claim + dedupe to one listing per location; solicitation stays banned and OUT of ask-routing", "ops": ["OPS-20"], "status": "OPEN"},
+    {"surface": "RateMDs", "observed": "4.4/70, #3 of 34 Tulsa", "observed_date": "2026-08-04", "action": "align name/NAP to canonical", "ops": [], "status": "OPEN"},
+    {"surface": "WebMD", "observed": "5.0/65 with a 'license expired' display flag", "observed_date": "2026-08-04", "action": "verify OK board record display; align NAP", "ops": [], "status": "OPEN"},
+    {"surface": "Vitals", "observed": "4.6/62", "observed_date": "2026-08-04", "action": "align name/NAP to canonical", "ops": [], "status": "OPEN"},
+    {"surface": "SRC (surgicalreview.org)", "observed": "duplicate listings: lawrence-angelo-cuzalina-md + dr-angelo-cuzalina", "observed_date": "2026-08-04", "action": "merge duplicates", "ops": ["OPS-10"], "status": "OPEN"},
+    {"surface": "Wikidata", "observed": "no QIDs (person or org)", "observed_date": "2026-08-12", "action": "paste prepared QuickStatements (person, then org), return QIDs to config — knowledge-panel prerequisite", "ops": ["OPS-16"], "status": "OPEN"}
+  ],
+  "freshness": "Every observed_date above is the surface's own vintage; the 2026-08-04 rows come from the TSA_WEB_DOSSIER census, 2026-08-07/08-12 rows from owner dashboard/credential intake readbacks recorded in the consoles, 2026-08-25 rows from this session. Surfaces are re-dated individually as they are worked — never as a batch."
+}
