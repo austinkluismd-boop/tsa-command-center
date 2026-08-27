@@ -1,0 +1,11 @@
+{
+  "target": "cc_data",
+  "note": "Correction pass from the adversarial review of the 08-25 reconciliation battery (2 findings against the shipped headline): (1) 'no OSA Yelp listing exists' overstated the evidence - the sweep supports non-appearance in the index, not nonexistence; (2) '4th phone variant' was an unsupportable ordinal - the same change labeled two different numbers fourth; the honest claim is 'previously unrecorded'. No figures change; only the two claim wordings.",
+  "ops": [
+    {
+      "op": "set",
+      "path": "reconciliation.entity.headline",
+      "value": "no OSA Yelp listing surfaced in the 08-25 sweep (non-appearance in the index, not proof of nonexistence) - 'Parkway Medical' occupies OSA's address and 'Cosmetic Surgery Center' (405-265-9255) carries the old brand; previously unrecorded phone variant (405) 698-3858 observed on Healthgrades; Tebra categorizes OSA as OBGYN; legacy 'Cosmetic Surgery Center' Facebook page live alongside the new OSA page"
+    }
+  ]
+}
