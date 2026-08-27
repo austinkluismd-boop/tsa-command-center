@@ -1,0 +1,16 @@
+{
+  "target": "cc_data",
+  "note": "CLOSURE DECLARATION OPS-33 - Live wellness page GLP-1 wording fix. APPLY ONLY after the operator has performed the act; statuses are operator declarations. done means: the live wellness page's GLP-1 trademark language corrected by hand on the live tree and shipped via ship_estate.sh. Before applying: fill in the two placeholder tokens in the ops values below (the day the act happened; the evidence actually observed) - ccdata.py check refuses (and CI blocks) a console carrying an unfilled placeholder.",
+  "ops": [
+    {
+      "op": "set",
+      "path": "ops.32.status",
+      "value": "done"
+    },
+    {
+      "op": "set",
+      "path": "ops.32.closed",
+      "value": "<DATE>: <EVIDENCE - operator declaration required>"
+    }
+  ]
+}

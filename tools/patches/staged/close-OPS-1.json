@@ -1,0 +1,16 @@
+{
+  "target": "cc_data",
+  "note": "CLOSURE DECLARATION OPS-1 - Cloudflare robots.txt AI-block flip + Sitemap line. APPLY ONLY after the operator has performed the act; statuses are operator declarations. done means: Cloudflare zone -> the managed robots.txt AI-crawler block is toggled OFF and the Sitemap line added; verified by fetching https://tulsasurgicalarts.com/robots.txt - 0 AI agents disallowed, 'Sitemap: https://tulsasurgicalarts.com/sitemap.xml' present. Before applying: fill in the two placeholder tokens in the ops values below (the day the act happened; the evidence actually observed) - ccdata.py check refuses (and CI blocks) a console carrying an unfilled placeholder.",
+  "ops": [
+    {
+      "op": "set",
+      "path": "ops.0.status",
+      "value": "done"
+    },
+    {
+      "op": "set",
+      "path": "ops.0.closed",
+      "value": "<DATE>: <EVIDENCE - operator declaration required>"
+    }
+  ]
+}

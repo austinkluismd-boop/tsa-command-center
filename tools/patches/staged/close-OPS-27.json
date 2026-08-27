@@ -1,0 +1,16 @@
+{
+  "target": "cc_data",
+  "note": "CLOSURE DECLARATION OPS-27 - Apple Business Connect - OSA campus. APPLY ONLY after the operator has performed the act; statuses are operator declarations. done means: the Apple Business Connect claim extended to the OSA campus. Before applying: fill in the two placeholder tokens in the ops values below (the day the act happened; the evidence actually observed) - ccdata.py check refuses (and CI blocks) a console carrying an unfilled placeholder.",
+  "ops": [
+    {
+      "op": "set",
+      "path": "ops.26.status",
+      "value": "done"
+    },
+    {
+      "op": "set",
+      "path": "ops.26.closed",
+      "value": "<DATE>: <EVIDENCE - operator declaration required>"
+    }
+  ]
+}

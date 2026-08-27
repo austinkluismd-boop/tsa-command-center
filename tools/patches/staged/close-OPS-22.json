@@ -1,0 +1,16 @@
+{
+  "target": "cc_data",
+  "note": "CLOSURE DECLARATION OPS-22 - Semrush API entitlement + PAT rotation. APPLY ONLY after the operator has performed the act; statuses are operator declarations. done means: Semrush API units entitled (classic key and/or API add-on), the v4 PAT activates, and the PAT rotated after entitlement. Before applying: fill in the two placeholder tokens in the ops values below (the day the act happened; the evidence actually observed) - ccdata.py check refuses (and CI blocks) a console carrying an unfilled placeholder.",
+  "ops": [
+    {
+      "op": "set",
+      "path": "ops.21.status",
+      "value": "done"
+    },
+    {
+      "op": "set",
+      "path": "ops.21.closed",
+      "value": "<DATE>: <EVIDENCE - operator declaration required>"
+    }
+  ]
+}

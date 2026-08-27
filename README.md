@@ -26,14 +26,23 @@ The consoles' source of record is the `window.CC_DATA` object embedded in
 
 1. Write a patch file under `tools/patches/` (see
    `2026-08-23-semrush-refresh.json` for the format — set/append ops on
-   dotted paths, plus a note recording what was and was not re-measured).
+   dotted paths, plus a note recording what was and was not re-measured;
+   a numeric segment indexes into a list, e.g. `ops.17.status`).
 2. Apply it: `python3 tools/ccdata.py patch tools/patches/<file>.json` —
    this patches desktop, mobile and the authority console in one operation
    (they can never diverge) and appends the patch to
    `CC_DATA.meta.data_updates`.
 3. Verify: `python3 tools/ccdata.py check` — byte-parity, landing-chip
    parity, the provenance/label law (a demo composite must never wear a
-   MEASURED chip), the zero-network law, and version parity.
+   MEASURED chip), the zero-network law, closure honesty (no unfilled
+   `<EVIDENCE>`/`<DATE>` placeholders), and version parity.
+
+The Ops tab's permission queue closes through the same pathway: each item
+in the 2026-08-24 closure batch has a pre-written declaration under
+`tools/patches/staged/` (applied **only after** the operator performs the
+act, with the evidence filled in — see the README there), and the ordered
+click-by-click path is `tools/runbooks/2026-08-24-ops-closure.md`.
+Statuses are operator declarations, never a session's assumption.
 
 CI (`.github/workflows/console-verify.yml`) runs the same battery on every
 push and PR. Enable branch protection on `main` requiring the

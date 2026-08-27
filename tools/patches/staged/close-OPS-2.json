@@ -1,0 +1,16 @@
+{
+  "target": "cc_data",
+  "note": "CLOSURE DECLARATION OPS-2 - NPPES NPI 1376625830 refresh. APPLY ONLY after the operator has performed the act; statuses are operator declarations. done means: NPPES record shows other-name 'Angelo Cuzalina' + MD taxonomy; verified via the public registry API for NPI 1376625830 (propagation can take a daily cycle). Before applying: fill in the two placeholder tokens in the ops values below (the day the act happened; the evidence actually observed) - ccdata.py check refuses (and CI blocks) a console carrying an unfilled placeholder.",
+  "ops": [
+    {
+      "op": "set",
+      "path": "ops.1.status",
+      "value": "done"
+    },
+    {
+      "op": "set",
+      "path": "ops.1.closed",
+      "value": "<DATE>: <EVIDENCE - operator declaration required>"
+    }
+  ]
+}

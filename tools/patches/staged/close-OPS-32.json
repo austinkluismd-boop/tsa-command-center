@@ -1,0 +1,16 @@
+{
+  "target": "cc_data",
+  "note": "CLOSURE DECLARATION OPS-32 - Clinical-review corpus queue cleared. APPLY ONLY after the operator has performed the act; statuses are operator declarations. done means: ATTESTATION.md ticked and committed by the clinician for every DRAFT_PENDING_CLINICAL_REVIEW record (TSA 10 + OSA incl. the 2026-08-23 build-out). Before applying: fill in the two placeholder tokens in the ops values below (the day the act happened; the evidence actually observed) - ccdata.py check refuses (and CI blocks) a console carrying an unfilled placeholder.",
+  "ops": [
+    {
+      "op": "set",
+      "path": "ops.31.status",
+      "value": "done"
+    },
+    {
+      "op": "set",
+      "path": "ops.31.closed",
+      "value": "<DATE>: <EVIDENCE - operator declaration required>"
+    }
+  ]
+}

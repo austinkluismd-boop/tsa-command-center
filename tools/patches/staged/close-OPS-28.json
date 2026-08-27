@@ -1,0 +1,16 @@
+{
+  "target": "cc_data",
+  "note": "CLOSURE DECLARATION OPS-28 - atlas-authority-site live-feed secrets. APPLY ONLY after the operator has performed the act; statuses are operator declarations. done means: SEMRUSH_API_KEY + CRUX_PSI_API_KEY repository secrets added to atlas-authority-site, the hourly cron pulls live, Semrush units topped up. Before applying: fill in the two placeholder tokens in the ops values below (the day the act happened; the evidence actually observed) - ccdata.py check refuses (and CI blocks) a console carrying an unfilled placeholder.",
+  "ops": [
+    {
+      "op": "set",
+      "path": "ops.27.status",
+      "value": "done"
+    },
+    {
+      "op": "set",
+      "path": "ops.27.closed",
+      "value": "<DATE>: <EVIDENCE - operator declaration required>"
+    }
+  ]
+}

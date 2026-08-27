@@ -1,0 +1,16 @@
+{
+  "target": "cc_data",
+  "note": "CLOSURE DECLARATION OPS-8 - Healthgrades wrong-name fix. APPLY ONLY after the operator has performed the act; statuses are operator declarations. done means: the 'Lawrence Cuzalina, DDS' listing is corrected to the practice name with the 170-review 4.8-star history retained on the corrected listing. Before applying: fill in the two placeholder tokens in the ops values below (the day the act happened; the evidence actually observed) - ccdata.py check refuses (and CI blocks) a console carrying an unfilled placeholder.",
+  "ops": [
+    {
+      "op": "set",
+      "path": "ops.7.status",
+      "value": "done"
+    },
+    {
+      "op": "set",
+      "path": "ops.7.closed",
+      "value": "<DATE>: <EVIDENCE - operator declaration required>"
+    }
+  ]
+}
