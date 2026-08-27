@@ -1,0 +1,40 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "tsa-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "8765",
+        "--bind",
+        "127.0.0.1"
+      ],
+      "port": 8765
+    },
+    {
+      "name": "realsite",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "-m",
+        "http.server",
+        "4174",
+        "--bind",
+        "127.0.0.1",
+        "-d",
+        "/Users/austinkluis/Desktop/TULSA_SURGICAL_ARTS copy/THE_REAL_SITE_2026-08-19"
+      ],
+      "port": 4174
+    },
+    {
+      "name": "realsite-fixnow",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": [
+        "/private/tmp/claude-501/-Users-austinkluis-dev-tsa-command-center/a106a752-7cab-46cd-a1ba-0128b598c991/scratchpad/fixnow/_pipeline/serve_local.py",
+        "8765"
+      ],
+      "port": 8765
+    }
+  ]
+}
